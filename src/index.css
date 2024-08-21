@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+  font-family: "Thunder", sans-serif;
+  src: url(../fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Thunder';
+  src: url('./assets/fonts/Thunder-BoldLC.woff') format('woff2'),
+      url('./assets/fonts/Thunder-BoldLC.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Interphases Pro';
+  src: url('./assets/fonts/TTInterphasesPro-DmBd.woff2') format('woff2'),
+      url('./assets/fonts/TTInterphasesPro-DmBd.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Interphases Pro';
+  src: url('./assets/fonts/TTInterphasesPro-Rg.woff2') format('woff2'),
+      url('./assets/fonts/TTInterphasesPro-Rg.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+.main-font {
+  font-family: sans-serif;
+}
