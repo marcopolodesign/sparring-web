@@ -173,6 +173,36 @@ export const getMultipleMatchDetails = async (matchIds) => {
   }
 };
 
+export const getCurrentTournament = async (id) => {
+  try {
+    const response = await axiosInstance.get(`/tournaments/${id}?populate=*`);
+    const tournaments = response.data.data;
+
+    // console.log(JSON.stringify(tournaments, null, 2)); // Pretty-printing the JSON
+
+    // Process each match to include profile picture URLs
+    // const formattedMatches = await Promise.all(matches.map(formatMatchDetails));
+
+    // console.log(JSON.stringify(formattedMatches, null, 2)); // Pretty-printing the JSON
+    return tournaments;
+  } catch (error) {
+    console.error(`Error fetching tournaments: ${error.message}`, error);
+    throw error;
+  }
+};
+
+export const getTournamentPlayers = async (tournamentId) => {
+
+  try {
+    const response = await axiosInstance.get(`/fupa/${tournamentId}/participants`);
+    console.log(response.data, 'RESPONSE PARTICIPANTS')
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching tournament players: ${error.message}`, error);
+    throw error;
+  }
+}
+
 export const getMatchDetails = async (matchId) => {
   try {
     const response = await axiosInstance.get(`/matches/${matchId}?populate=members,match_owner,location,sport`);

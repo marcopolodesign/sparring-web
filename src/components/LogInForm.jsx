@@ -1,6 +1,7 @@
 // src/components/LoginForm.jsx
 import React, { useState } from 'react';
 import { loginUser, fetchUser } from '../api/functions';
+import Logo from '../assets/icons/logo-v.svg';
 
 function LoginForm({ setUser }) {
   const [username, setUsername] = useState('');
@@ -16,6 +17,8 @@ function LoginForm({ setUser }) {
       const userData = await fetchUser(data.user.id);
 
       setUser(userData); // Pass user data back to the parent component
+      // pass it lo the localStorage
+      localStorage.setItem('user', JSON.stringify(userData)); // Store user data in localStorage
       setIsUpdating(false);
     } catch (error) {
       setIsUpdating(false);
@@ -24,6 +27,15 @@ function LoginForm({ setUser }) {
   };
 
   return (
+    <>
+       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <img
+            alt="Your Company"
+            src={Logo}
+            className="mx-auto h-15 w-auto"
+          />
+        </div>
+        
     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form onSubmit={handleLogin} className="space-y-6">
         <div>
@@ -87,6 +99,7 @@ function LoginForm({ setUser }) {
         </a>
       </p>
     </div>
+    </>
   );
 }
 

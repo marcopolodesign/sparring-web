@@ -4,13 +4,12 @@ import tailwindConfig from '../tailwind.config'
 const colors = tailwindConfig.theme.extend.colors;
 const fonts = tailwindConfig.theme.extend.fontFamily;
 
-console.log(fonts)
 
 export const Header = styled.h1`
 font-family: ${fonts['display'][0]};
 color: ${colors['darkGreen']};
 font-size: 4rem;
-line-height: 1.2;
+line-height: 1;
 `
 
 
@@ -30,3 +29,24 @@ font-weight: 600;
   background: ${({ $primary }) => ($primary ? 'white': "black")};
   }
 `;
+
+
+export const SubContainer = styled.div`
+border-radius: 8px;
+padding: 1rem;
+margin-top: 1rem;
+margin-bottom: 1rem;
+`
+
+export const Divider = styled.span`
+height: 2px;
+width: 100%;
+background: #000;
+display: block;
+`
+
+export const ThumbImage = styled.img`
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+`
