@@ -45,31 +45,31 @@ const Torneo = () => {
                         {group.matches.map((match) => {
                                 return (
                                     !match.score ? (
-                                        <div key={match.id} className="bg-white rounded-md p-4 my-2 flex flex-col justify-start items-start gap-3">
+                                        <div key={match.id} className="bg-white rounded-md p-4 my-2 flex flex-col justify-start items-start gap-3 min-w-[260px] w-max">
                                             {match.couples.map((couple, index) => (
                                                 <div key={index} className="flex flex-col items-start">
                                                     <div className="flex items-center">
-                                                        <div className="w-[40%]">
-                                                        <div className="flex items-center justify-center">
-                                                            <div className="w-10 h-10 bg-lightGreen rounded-full flex items-center justify-center border-2 border-white translate-x-1"
-                                                                style={{ backgroundImage: `url(${couple.members[0].profilePicture || ''})` }}
-                                                            ></div>
-                                    
-                                                            <div className="w-10 h-10 bg-lightGreen rounded-full flex items-center justify-center border-2 border-white -translate-x-1"
-                                                                style={{ backgroundImage: `url(${couple.members[1].profilePicture || ''})` }}
-                                                            ></div>
-                                                        </div>
-                                                        <div className="flex flex-col items-center text-center">
-                                                            <p>{couple.members[0].firstName}</p>
-                                                            <p>{couple.members[1].firstName}</p>
-                                                        </div>
+                                                        <div className="w-[50%] mr-12">
+                                                            <div className="flex items-center justify-center">
+                                                                <div className="w-10 h-10 bg-lightGreen rounded-full flex items-center justify-center border-2 border-white translate-x-1"
+                                                                    style={{ backgroundImage: `url(${couple.members[0].profilePicture || ''})` }}
+                                                                ></div>
+
+                                                                <div className="w-10 h-10 bg-lightGreen rounded-full flex items-center justify-center border-2 border-white -translate-x-1"
+                                                                    style={{ backgroundImage: `url(${couple.members[1].profilePicture || ''})` }}
+                                                                ></div>
+                                                            </div>
+                                                            <div className="flex flex-col items-center text-center ">
+                                                                <p className='break-keep'>{couple.members[0].firstName.charAt(0)}. {couple.members[0].lastName}</p>
+                                                                <p className='break-keep'>{couple.members[1].firstName.charAt(0)}. {couple.members[1].lastName}</p>
+                                                            </div>
 
                                                         </div>
 
-                                                        <div className="flex gap-3 ml-12">
+                                                        <div className="flex gap-3">
                                                             {couple.sets.map((set, index) => (
                                                                 console.log(set.gamesWon),
-                                                               <div key={index} className={`flex items-center`}>
+                                                                <div key={index} className={`flex items-center`}>
                                                                     <p className={`font-display text-6xl text-gray-300 ${set.gamesWon === 6 ? '!text-darkGreen underline' : ''}`}>{set.gamesWon}</p>
                                                                 </div>
                                                             ))}
