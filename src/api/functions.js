@@ -203,6 +203,16 @@ export const getTournamentPlayers = async (tournamentId) => {
   }
 }
 
+export const getTournamentGroups = async (tournamentId) => {
+  try {
+    const response = await axiosInstance.get(`/fupa/${tournamentId}/groups`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching tournament groups: ${error.message}`, error);
+    throw error;
+  }
+}
+
 export const getMatchDetails = async (matchId) => {
   try {
     const response = await axiosInstance.get(`/matches/${matchId}?populate=members,match_owner,location,sport`);

@@ -21,6 +21,7 @@ const Authenticated = ({ user, setUser }) => {
         const tournaments = await getCurrentTournament(1);
         console.log(tournaments.sponsors);
         setTournament(tournaments);
+        localStorage.setItem('tournament', JSON.stringify(tournaments));
       } catch (error) {
         console.error('Error fetching tournaments:', error.message);
       }
