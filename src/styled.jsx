@@ -9,7 +9,7 @@ export const Header = styled.h1`
 font-family: ${fonts['display'][0]};
 color: ${colors['darkGreen']};
 font-size: 4rem;
-line-height: 1;
+line-height: .8;
 `
 
 

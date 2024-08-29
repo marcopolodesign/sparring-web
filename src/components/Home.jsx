@@ -8,7 +8,7 @@ import { getCurrentTournament } from '../api/functions';
 const Authenticated = ({ user, setUser }) => {
 
  const [tournament, setTournament] = useState(null);
-  // console.log(user, 'testing')
+  console.log(user, 'testing')
   const handleLogout = () => {
     setUser(null); // Clear the user state to log out
     // Optionally, you could also clear tokens from localStorage if you're storing JWT tokens

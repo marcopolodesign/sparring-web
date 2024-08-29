@@ -191,6 +191,28 @@ export const getCurrentTournament = async (id) => {
   }
 };
 
+
+export const getGroupDetails = async (tournamentId, userId) => {
+  try {
+    const response = await axiosInstance.get(`fupa/${tournamentId}/members/${userId}/group`);
+    const group = response.data;
+    return group;
+  } catch (error) {
+    console.error(`Error fetching group: ${error.message}`, error);
+    throw error;
+  }
+};
+
+export const getTournamentResults = async (tournamentId) => {
+  try {
+    const response = await axiosInstance.get(`/fupa/${tournamentId}/results`);
+    return response;
+  } catch (error) {
+    console.error(`Error fetching tournament results: ${error.message}`, error);
+    throw error;
+  }
+}
+
 export const getTournamentPlayers = async (tournamentId) => {
 
   try {
