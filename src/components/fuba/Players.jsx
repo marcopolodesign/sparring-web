@@ -48,7 +48,8 @@ const Players = (props) => {
       <div className="flex gap-4 mt-3 w-max">
         {participants.map((participant, index) => (
           <div className="flex flex-col gap-1 justify-center items-center" key={index}>
-            <img className="w-16 h-16 rounded-full bg-lightGreen" src={participant.profilePictureUrl} alt="profile" />
+            {/* <img className="w-16 h-16 rounded-full bg-lightGreen" src={participant.profilePictureUrl} alt="profile" /> */}
+            <div className="w-16 h-16 rounded-full bg-lightGreen bg-cover bg-center" style={{backgroundImage: `url(${participant.profilePictureUrl})`}}></div>
             <p className="flex flex-col items-center leading-[1] text-center line-clamp-1">
               <span>{participant.firstName}</span>
               {'\n'}

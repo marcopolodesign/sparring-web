@@ -6,13 +6,14 @@ const MatchCard = ({match}) => {
     {match.couples.map((couple, index) => (
         <div key={index} className="flex flex-col items-start">
             <div className="flex items-center">
+             {console.log(couple.members, 'COUPLES')}
                 <div className="min-w-[110px] mr-12">
                     <div className="flex items-center justify-center">
-                        <div className="w-10 h-10 bg-lightGreen rounded-full flex items-center justify-center border-2 border-white translate-x-1"
+                        <div className="w-10 h-10 bg-lightGreen rounded-full flex items-center justify-center border-2 border-white translate-x-1 bg-cover bg-center"
                             style={{ backgroundImage: `url(${couple.members[0].profilePicture || ''})` }}
                         ></div>
 
-                        <div className="w-10 h-10 bg-lightGreen rounded-full flex items-center justify-center border-2 border-white -translate-x-1"
+                        <div className="w-10 h-10 bg-lightGreen rounded-full flex items-center justify-center border-2 border-white -translate-x-1  bg-cover bg-center"
                             style={{ backgroundImage: `url(${couple.members[1].profilePicture || ''})` }}
                         ></div>
                     </div>
@@ -27,7 +28,7 @@ const MatchCard = ({match}) => {
                     {couple.sets.map((set, index) => (
                         // console.log(set.gamesWon),
                         <div key={index} className={`flex items-center`}>
-                            <p className={`font-display text-6xl text-gray-300 ${set.gamesWon === 6 ? '!text-darkGreen underline' : ''}`}>{set.gamesWon}</p>
+                            <p className={`font-display text-6xl text-gray-300 ${set.gamesWon >= 4 ? '!text-darkGreen underline' : ''}`}>{set.gamesWon}</p>
                         </div>
                     ))}
                 </div>
