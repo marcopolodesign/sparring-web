@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Nav from '../components/fuba/Nav'
-import {getGroupDetails} from '../api/functions'
+import Loading from '../components/Loading';
+import Nav from '../components/fuba/Nav';
+import {getGroupDetails} from '../api/functions';
 import { Header } from '../styled';
 import MatchCard from '../components/fuba/MatchCard';
 import Leaderboard from '../components/fuba/Leaderboard';
@@ -15,7 +16,7 @@ const Partidos = () => {
         const fetchUserDetails = async () => {
           try {
             const groupInfo = await getGroupDetails(1,36);
-            console.log(groupInfo);
+            console.log(groupInfo, 'GROUP INFO');
             setPartner(groupInfo.matchedCouple.otherMember);
             console.log(partner);
             setGroup(groupInfo);
@@ -26,10 +27,10 @@ const Partidos = () => {
     
         fetchUserDetails();
       }
-        , []);
+        , [partner]);
 
     if (!group || !partner) {
-        return <div>Loading...</div>;
+      return <Loading />
     }
 
     const firstName = user.firstName.split(' ')[0];
@@ -57,7 +58,7 @@ const Partidos = () => {
 
             <div>
                 <h2 className="!text-white font-semibold px-6">Tabla de posiciones</h2>
-                <Leaderboard />
+                <Leaderboard isGroup />
             </div>
 
 

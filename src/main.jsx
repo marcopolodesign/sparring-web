@@ -4,6 +4,7 @@ import App from "./App";
 import Login from "./routes/log-in"
 import Torneo from "./routes/torneo"
 import Partidos from "./routes/partidos"
+import Tabla from "./routes/tabla"
 
 
 import {
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
   {
     path: "/torneo",
     element: <Torneo />,
+  },
+
+  {
+    path: "/tabla",
+    element: <Tabla />,
   },
 
   {

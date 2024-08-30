@@ -8,7 +8,7 @@ import { getCurrentTournament } from '../api/functions';
 const Authenticated = ({ user, setUser }) => {
 
  const [tournament, setTournament] = useState(null);
-  console.log(user, 'testing')
+  // console.log(user, 'testing')
   const handleLogout = () => {
     setUser(null); // Clear the user state to log out
     // Optionally, you could also clear tokens from localStorage if you're storing JWT tokens
@@ -29,7 +29,7 @@ const Authenticated = ({ user, setUser }) => {
 
     fetchTournaments();
   }
-  , []);
+  , [0]);
 
   return (
     <div className="sm:mx-auto w-full sm:max-w-sm bg-blue">

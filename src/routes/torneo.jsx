@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Nav from '../components/fuba/Nav'
+import Loading from '../components/Loading';
 import { getTournamentGroups } from '../api/functions'
 import { Header } from '../styled';
 
@@ -29,7 +30,7 @@ const Torneo = () => {
       , []);
 
     if (!groups) {
-        return <div>Loading...</div>;
+     return <Loading />
     }
 
     return (

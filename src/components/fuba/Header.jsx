@@ -1,5 +1,6 @@
 import React from 'react';
 import { Divider, Header, SubContainer } from '../../styled';
+import Loading from '../Loading';
 import Fupa from '../../assets/icons/fupa.svg'
 import Calendar from '../../assets/icons/calendar.svg'
 
@@ -10,7 +11,7 @@ const HeaderTournament = (props) => {
     const tournamentId = props.tournament?.id;
 
     if (!tournament) {
-        return <div>Loading...</div>; // You can replace this with a more sophisticated loading spinner or message
+        return <Loading />; // You can replace this with a more sophisticated loading spinner or message
     }
 
     // console.log(tournament, 'TOURNAMENT');

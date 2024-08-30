@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { getTournamentResults } from '../../api/functions';
+import Loading from '../Loading';
+import { getTournamentResults, getGroupResults } from '../../api/functions';
 import { SubContainer } from '../../styled';
 
-const Leaderboard = () => {
+const Leaderboard = ({isGroup}) => {
   const [couples, setCouples] = useState(null);
 
   useEffect(() => {
     const fetchCouples = async () => {
       try {
-        const response = await getTournamentResults(1); // Replace with your actual endpoint
-        setCouples(response.data);
-        console.log(response.data);
+        const response = !isGroup ? await getTournamentResults(1,36) : await getGroupResults(1,36) ; // Replace with your actual endpoint
+        !isGroup ? setCouples(response.data) : setCouples(response.data.results);
+        console.log(response.data, 'RESPONSE');
       } catch (error) {
         console.error('Error fetching tournament results:', error.message);
       }
@@ -20,20 +21,20 @@ const Leaderboard = () => {
   }, []);
 
   if (!couples) {
-    return <div className="text-center py-8">Loading...</div>;
+   return (<div></div>);
   }
 
-  const sortedCouples = sortCouplesByMatchesWon(couples);
+  // const sortedCouples = sortCouplesByMatchesWon(couples);
 
 return (
     <SubContainer className="p-8 mx-6 bg-white">
-        <div className="flex justify-between text-lg font-bold border-b pb-2">
+        <div className="flex justify-between text-md text-textGrey font-normal border-b pb-2">
             <span>Parejas</span>
             <span>Puntos</span>
         </div>
         <div className="mt-4">
-            {sortedCouples.map((couple, index) => (
-                <div key={couple.couple.id} className="flex justify-between items-center py-2 border-b">
+            {couples.map((couple, index) => (
+                <div key={index} className="flex justify-between items-center py-2 border-b">
                     <div className="flex items-center">
                         <div className="text-2xl font-bold mr-4 font-display">{index + 1}</div>
                         <div className="flex items-center">
@@ -52,14 +53,14 @@ return (
                         </div>
                         <div className="ml-4 font-normal">
                             {couple.couple.members.map((member, idx) => (
-                                <span key={member.id} className="text-sm">
+                                <span key={member.id} className="text-sm line-clamp-2">
                                     {member.firstName.charAt(0)}. {member.lastName}
                                     {idx < couple.couple.members.length - 1 && ' & '}
                                 </span>
                             ))}
                         </div>
                     </div>
-                    <div className="text-2xl font-bold">{couple.matchesWon}</div>
+                    <div className="text-2xl text-display font-bold">{couple.matchesWon}</div>
                 </div>
             ))}
         </div>

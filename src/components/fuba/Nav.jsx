@@ -3,13 +3,15 @@ import { NavLink } from 'react-router-dom';
 import HomeIcon from '../../assets/icons/home';
 import TrophyIcon from '../../assets/icons/trophy';
 import RacketIcon from '../../assets/icons/racket';
+import TableIcon from '../../assets/icons/table';
 
 export default function Nav() {
 
     const navItems = [
         { name: 'Inicio', href: '/inicio', icon: HomeIcon  },
         { name: 'Torneo', href: '/torneo', icon: TrophyIcon  },
-        { name: 'Partidos', href: '/partidos', icon: RacketIcon  },    ]
+        { name: 'Partidos', href: '/partidos', icon: RacketIcon  }, 
+        { name: 'Tabla', href: '/tabla', icon: TableIcon  },    ]
   return (
     <div className='fixed bottom-0 left-0 w-full py-4 border-t-[1px] border-t-slate-300 bg-white'>
       <nav className='flex justify-around gap-3 items-start'>

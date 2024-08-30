@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from 'react';
-
+import Loading from '../Loading';
 import FriendBubble from './FriendBubble';
 import { SubContainer } from '../../styled';
 import { getTournamentPlayers } from '../../api/functions';
@@ -29,7 +29,7 @@ const Players = (props) => {
   }, [props.tournament]);
 
   if (loading) {
-    return <div>Loading...</div>; // Loading spinner or message
+    return <Loading />
   }
 
   if (error) {
@@ -48,8 +48,8 @@ const Players = (props) => {
       <div className="flex gap-4 mt-3 w-max">
         {participants.map((participant, index) => (
           <div className="flex flex-col gap-1 justify-center items-center" key={index}>
-            <img className="w-16 h-16 rounded-full" src={participant.profilePictureUrl} alt="profile" />
-            <p className="flex flex-col items-center leading-[1] text-center">
+            <img className="w-16 h-16 rounded-full bg-lightGreen" src={participant.profilePictureUrl} alt="profile" />
+            <p className="flex flex-col items-center leading-[1] text-center line-clamp-1">
               <span>{participant.firstName}</span>
               {'\n'}
               <span>{participant.lastName}</span>

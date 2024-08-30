@@ -203,6 +203,16 @@ export const getGroupDetails = async (tournamentId, userId) => {
   }
 };
 
+export const getGroupResults = async (tournamentId, memberId) => {
+  try {
+    const response = await axiosInstance.get(`fupa/${tournamentId}/results/${memberId}`);
+  return response
+  } catch (error) {
+    console.error(`Error fetching group: ${error.message}`, error);
+    throw error;
+  }
+};
+
 export const getTournamentResults = async (tournamentId) => {
   try {
     const response = await axiosInstance.get(`/fupa/${tournamentId}/results`);
