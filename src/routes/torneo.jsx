@@ -8,11 +8,13 @@ import { Link } from 'react-router-dom';
 import MatchCard from '../components/fuba/MatchCard';
 
 
-const Torneo = ({user}) => {
+const Torneo = () => {
 
     const [groups, setGroups] = useState(null);
 
     const tournament = JSON.parse(localStorage.getItem('tournament'));
+
+    const user = JSON.parse(localStorage.getItem('user'))
 
 
     useEffect(() => {
