@@ -34,12 +34,12 @@ return (
         </div>
         <div className="mt-4">
             {couples.map((couple, index) => (
-                <div key={index} className="flex justify-between items-center py-2 border-b">
+                <div key={index} className="flex justify-between items-center py-2 border-b last:border-b-0 first:pt-0">
                     <div className="flex items-center">
-                        <div className="text-2xl font-bold mr-4 font-display">{index + 1}</div>
+                        <div className="text-sm font-normal mr-4 font-body text-textGrey">{index + 1}</div>
                         <div className="flex items-center">
                             {couple.couple.members.map(member => (
-                                    <div key={member.id} className="w-10 h-10 bg-lightGreen rounded-full flex items-center justify-center last:mr-0  last:-translate-x-2 border-2 border-white  bg-cover bg-center"
+                                    <div key={member.id} className="w-10 h-10 bg-lightGreen rounded-full flex items-center justify-center last:mr-0  last:-translate-x-2 border-2 border-white  bg-cover bg-center "
                                          style={{ backgroundImage: `url(${member.profilePicture || ''})` }}
                                  ></div>
 
@@ -60,7 +60,7 @@ return (
                             ))}
                         </div>
                     </div>
-                    <div className="text-2xl text-display font-bold">{couple.matchesWon}</div>
+                    <div className="text-2xl font-display font-bold">{couple.matchesWon}</div>
                 </div>
             ))}
         </div>
