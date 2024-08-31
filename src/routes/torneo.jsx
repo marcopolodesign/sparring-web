@@ -8,11 +8,12 @@ import { Link } from 'react-router-dom';
 import MatchCard from '../components/fuba/MatchCard';
 
 
-const Torneo = () => {
+const Torneo = ({user}) => {
 
     const [groups, setGroups] = useState(null);
 
     const tournament = JSON.parse(localStorage.getItem('tournament'));
+
 
     useEffect(() => {
         const fetchTournaments = async () => {
@@ -46,7 +47,7 @@ const Torneo = () => {
                         <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
                         {group.matches.map((match) => {
                                 return (
-                                    <MatchCard match={match} key={match.id} />
+                                    <MatchCard match={match} key={match.id} user={user} />
                                 );
                             })}
                             {/* {group.teams.map((team) => (

@@ -15,6 +15,9 @@ import {
 } from "react-router-dom";
 import "./index.css";
 
+const user = JSON.parse(localStorage.getItem('user'))
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,7 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: "torneo",
-        element: <Torneo />,
+        element: <Torneo  user={user}/>,
       },
       {
         path: "tabla",
