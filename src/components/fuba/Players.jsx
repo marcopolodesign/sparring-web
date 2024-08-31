@@ -45,15 +45,15 @@ const Players = (props) => {
       <p className="font-semibold text-black">Jugadores de {props.tournamentName}</p>
 
     <div className="w-full overflow-hidden">
-      <div className="flex gap-4 mt-3 w-max">
+      <div className="flex gap-4 mt-3 w-full overflow-scroll">
         {participants.map((participant, index) => (
           <div className="flex flex-col gap-1 justify-center items-center" key={index}>
             {/* <img className="w-16 h-16 rounded-full bg-lightGreen" src={participant.profilePictureUrl} alt="profile" /> */}
-            <div className="w-16 h-16 rounded-full bg-lightGreen bg-cover bg-center" style={{backgroundImage: `url(${participant.profilePictureUrl})`}}></div>
+            <div className="w-16 h-16 rounded-full bg-lightGreen bg-cover bg-center border-[1px] border-blue" style={{backgroundImage: `url(${participant.profilePictureUrl})`}}></div>
             <p className="flex flex-col items-center leading-[1] text-center line-clamp-1">
-              <span>{participant.firstName}</span>
+              <span className="font-normal text-sm line-clamp-1">{participant.firstName}</span>
               {'\n'}
-              <span>{participant.lastName}</span>
+              <span className="font-normal text-sm line-clamp-1">{participant.lastName}</span>
             </p>
           </div>
         ))}

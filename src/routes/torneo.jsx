@@ -56,7 +56,6 @@ const Torneo = () => {
                     </div>
                 ))}
             </div>
-        <Nav />
         </div>
     )
 }

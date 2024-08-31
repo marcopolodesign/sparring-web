@@ -20,15 +20,15 @@ const LogIn = ()=> {
 
   return (
     <>
-      <div className={`flex min-h-full flex-1 flex-col justify-center w-screen ${!user && 'px-6 py-12 lg:px-8'} `}>
-        {user ? (
+      <div className={`flex min-h-full flex-1 flex-col justify-center w-screen`}>
+        {/* {user ? (
           <>
           <Authenticated user={user} setUser={setUser} />
           {navigate('/inicio', { replace: true })}
           </>
-        ) : (
+        ) : ( */}
           <LoginForm setUser={setUser} />
-        )}
+        {/* )} */}
       </div>
     </>
   );

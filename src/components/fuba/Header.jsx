@@ -51,7 +51,7 @@ const HeaderTournament = (props) => {
             {/* <img src={`${tournament?.logo?.data?.attributes?.url}`} alt="logo" className="w-24 h-24 rounded-full"/> */}
         </div>
 
-        <div className="container mx-auto px-4 -translate-y-24">
+        <div className="container mx-auto px-4 -translate-y-24 pb-24">
             <SubContainer style={{backgroundColor: '#fff'}}>
                 <p className="text-textGrey text-center text-xl font-normal mt-4 capitalize">{startDay} — {endDay} {monthName}</p>
                 <Header className='!text-black text-center mt-2'>{tournament.name}</Header>

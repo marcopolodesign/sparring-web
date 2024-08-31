@@ -5,7 +5,9 @@ import Login from "./routes/log-in"
 import Torneo from "./routes/torneo"
 import Partidos from "./routes/partidos"
 import Tabla from "./routes/tabla"
-
+import ProtectedRoute from "./components/ProtectedRoute";
+import Container from "./components/fuba/Container";
+import TournamentHome from './components/Home'
 
 import {
   createBrowserRouter,
@@ -23,24 +25,47 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/inicio",
-    element: <Login />,
+    path: "/fupa",
+    element:  (
+      <ProtectedRoute>
+        <Container />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        path: "home",
+        index: true,
+        element: <TournamentHome />,
+      },
+      {
+        path: "torneo",
+        element: <Torneo />,
+      },
+      {
+        path: "tabla",
+        element: <Tabla />,
+      },
+      {
+        path: "partidos",
+        element: <Partidos />,
+      },
+    ],
   },
 
-  {
-    path: "/torneo",
-    element: <Torneo />,
-  },
+  // {
+  //   path: "/torneo",
+  //   element: <Torneo />,
+  // },
 
-  {
-    path: "/tabla",
-    element: <Tabla />,
-  },
+  // {
+  //   path: "/tabla",
+  //   element: <Tabla />,
+  // },
 
-  {
-    path: "/partidos",
-    element: <Partidos />,
-  },
+  // {
+  //   path: "/partidos",
+  //   element: <Partidos />,
+  // },
 
 ]);
 

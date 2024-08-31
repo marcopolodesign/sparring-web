@@ -2,11 +2,13 @@
 import React, { useState } from 'react';
 import { loginUser, fetchUser } from '../api/functions';
 import Logo from '../assets/icons/logo-v.svg';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm({ setUser }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isUpdating, setIsUpdating] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -19,6 +21,10 @@ function LoginForm({ setUser }) {
       setUser(userData); // Pass user data back to the parent component
       // pass it lo the localStorage
       localStorage.setItem('user', JSON.stringify(userData)); // Store user data in localStorage
+
+      // Redirect the user to the home
+   
+      navigate('/fupa/home', { replace: true });
       setIsUpdating(false);
     } catch (error) {
       setIsUpdating(false);
@@ -27,7 +33,7 @@ function LoginForm({ setUser }) {
   };
 
   return (
-    <>
+    <div className="bg-darkGreen min-h-svh px-6 py-12 lg:px-8">
        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             alt="Your Company"
@@ -39,8 +45,8 @@ function LoginForm({ setUser }) {
     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form onSubmit={handleLogin} className="space-y-6">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-            Email address
+          <label htmlFor="email" className="block text-sm font-medium leading-6 text-white text-body">
+            Mail
           </label>
           <div className="mt-2">
             <input
@@ -51,20 +57,20 @@ function LoginForm({ setUser }) {
               onChange={(e) => setUsername(e.target.value)}
               required
               autoComplete="email"
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="block w-full rounded-lg border-0 p-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-lightGreen sm:text-sm sm:leading-6"
             />
           </div>
         </div>
 
         <div>
           <div className="flex items-center justify-between">
-            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-              Password
+            <label htmlFor="password" className="block text-sm font-medium leading-6 text-white text-body">
+              Contraseña
             </label>
             <div className="text-sm">
-              <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+              {/* <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
                 Forgot password?
-              </a>
+              </a> */}
             </div>
           </div>
           <div className="mt-2">
@@ -76,7 +82,7 @@ function LoginForm({ setUser }) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="block w-full rounded-lg border-0 p-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-lightGreen sm:text-sm sm:leading-6"
             />
           </div>
         </div>
@@ -84,22 +90,22 @@ function LoginForm({ setUser }) {
         <div>
           <button
             type="submit"
-            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="flex w-full justify-center rounded-md bg-lightGreen px-3 py-4 text-md font-semibold leading-6 text-darkGreen text-body shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             disabled={isUpdating}
           >
-            {isUpdating ? 'Signing in...' : 'Sign in'}
+            {isUpdating ? 'Cargando...' : 'Iniciar sesión'}
           </button>
         </div>
       </form>
 
-      <p className="mt-10 text-center text-sm text-gray-500">
-        Not a member?{' '}
-        <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-          Start a 14-day free trial
-        </a>
+      <p className="mt-10 text-center text-sm text-white">
+        Olvidaste tu contraseña?{' '}
+        <span className="font-semibold leading-6 underline">
+          Probá con tu DNI
+        </span>
       </p>
     </div>
-    </>
+    </div>
   );
 }
 
