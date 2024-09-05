@@ -33,7 +33,7 @@ const HeaderTournament = (props) => {
     const deadlineMonth = new Intl.DateTimeFormat('es-ES', { month: 'long' }).format(deadlineDate);
 
 
-
+    {console.log(tournament, 'TOURNAMENT')}
 
     return (
     <>
@@ -84,6 +84,11 @@ const HeaderTournament = (props) => {
             </SubContainer>
 
             <Players tournament={tournamentId} tournamentName={tournament.name} />
+
+            <SubContainer style={{backgroundColor: '#fff'}}>
+                <p className="font-medium">{tournament.details.title}</p>
+                <p className="text-textGrey" style={{whiteSpace: 'pre-line'}}>{tournament.details.description}</p>
+            </SubContainer>
            
         </div>
     </>
