@@ -1,5 +1,7 @@
 import React from 'react'
 import {Button} from '../styled'
+import iPhoneHomeImage from '/src/assets/images/iphone-home.png';
+
 
 export default function Hero() {
   return (
@@ -37,7 +39,7 @@ export default function Hero() {
         </div>
        
        <div className="px-20 pt-16 sm:pt-18 mx-auto w-full sm:w-[45%]">
-        <img className="mx-auto" src='/src/assets/images/iphone-home.png' />
+        <img className="mx-auto" src={iPhoneHomeImage} />
        </div>
       </div>
   )
