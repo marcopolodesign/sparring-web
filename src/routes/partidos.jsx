@@ -37,6 +37,7 @@ const Partidos = () => {
 
     return (
         <div className="min-h-screen bg-blue container mx-auto py-12 flex flex-col gap-10 pb-28">
+          {console.log(group)}
             <div className="flex gap-5 justify-center items-center">
                 <div style={{backgroundImage: `url(${user.profilePicture.url}`}} alt="profile" className="w-24 h-24 rounded-full border-2 border-white bg-cover bg-center" />
                 <div className="flex flex-col mt-2">
@@ -46,7 +47,17 @@ const Partidos = () => {
             </div>
 
             <div>
-                <h2 className="!text-white font-semibold px-6">{group.group.name} — Partidos. {group.group.hours}</h2>
+                <h2 className="!text-white font-semibold px-6">{group.group.name} — Partidos.
+                  Horario: 
+                  {
+                    group.group.name === 'Zona A' ? '14:00hs' :
+                    group.group.name === 'Zona B' ? '15:30hs' :
+                    group.group.name === 'Zona C' ? '17:00hs' : 
+                    group.group.name === 'Zona D' ? '18:30hs' : 
+                    null
+                  }
+                  
+                  </h2>
                     <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6 ">
                     {group.matches.map((match) => {
                             return (
