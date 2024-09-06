@@ -32,7 +32,7 @@ const Authenticated = ({ user, setUser }) => {
   , []);
 
   return (
-    <div className="sm:mx-auto w-full sm:max-w-sm bg-blue">
+    <div className="sm:mx-auto w-full bg-blue">
       <Header tournament={tournament} />
     {/* <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
         Hello {user.firstName}

@@ -37,7 +37,7 @@ const Torneo = () => {
     }
 
     return (
-        <div className="min-h-screen bg-blue container mx-auto">
+        <div className="min-h-screen bg-blue  mx-auto">
             <div className="py-12">
                 <h1 className="!text-white uppercase text-center text-5xl font-display">{tournament?.attributes.name}: Clasificación</h1>
                 <Link to="/fupa/partidos" className="!text-white text-center text-lg font-body mx-auto block" >Ver mis partidos</Link>

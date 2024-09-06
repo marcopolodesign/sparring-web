@@ -36,7 +36,7 @@ const Partidos = () => {
     const firstName = user.firstName.split(' ')[0];
 
     return (
-        <div className="min-h-screen bg-blue container mx-auto py-12 flex flex-col gap-10 pb-28">
+        <div className="min-h-screen bg-blue mx-auto py-12 flex flex-col gap-10 pb-28">
           {console.log(group)}
             <div className="flex gap-5 justify-center items-center">
                 <div style={{backgroundImage: `url(${user.profilePicture.url}`}} alt="profile" className="w-24 h-24 rounded-full border-2 border-white bg-cover bg-center" />
@@ -46,7 +46,7 @@ const Partidos = () => {
                 </div>
             </div>
 
-            <div>
+            <div className="container mx-auto">
                 <h2 className="!text-white font-semibold px-6">{group.group.name} — Partidos.
                   Horario: 
                   {
@@ -58,7 +58,7 @@ const Partidos = () => {
                   }
                   
                   </h2>
-                    <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6 ">
+                    <ul className="flex w-full sm:gap-12 gap-8 overflow-scroll pl-6 last:pr-6 ">
                     {group.matches.map((match) => {
                             return (
                               <MatchCard match={match} key={match.id} user={user} />
@@ -67,7 +67,7 @@ const Partidos = () => {
                     </ul>
             </div>
 
-            <div>
+            <div className="container mx-auto">
                 <h2 className="!text-white font-semibold px-6">Tabla de posiciones</h2>
                 <Leaderboard isGroup />
             </div>
