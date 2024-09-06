@@ -57,11 +57,11 @@ const HeaderTournament = (props) => {
                 <Header className='!text-black text-center mt-2'>{tournament.name}</Header>
                 <p className="text-textGrey text-center text-xl font-normal capitalize">{tournament.venue.data.attributes.name}, {tournament.location[0].address}</p>
 
-                {tournament.sponsors.data.length > 0 && (
+                {tournament.sponsors?.data?.length > 0 && (
                     <>
                         <Divider className="mt-6" />
                         <div className="flex justify-between items-center py-6 px-2">
-                            {tournament.sponsors.data.map((sponsor) => (
+                            {tournament.sponsors?.data?.map((sponsor) => (
                                 <div className="max-w-[25%]"  key={sponsor.id}>
                                     <img src={sponsor.attributes.url} alt={sponsor.attributes.name} />
                                 </div>
