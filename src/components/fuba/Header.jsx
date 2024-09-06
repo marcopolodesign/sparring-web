@@ -62,7 +62,7 @@ const HeaderTournament = (props) => {
                         <Divider className="mt-6" />
                         <div className="flex justify-between items-center py-6 px-2">
                             {tournament.sponsors.data.map((sponsor) => (
-                                <div key={sponsor.id}>
+                                <div className="max-w-[25%]"  key={sponsor.id}>
                                     <img src={sponsor.attributes.url} alt={sponsor.attributes.name} />
                                 </div>
                             ))}
@@ -77,7 +77,7 @@ const HeaderTournament = (props) => {
                 <p className="text-textGrey">{tournament.description}</p>
 
                 <div className="flex mt-5 items-center gap-2">
-                    <img src={Calendar} alt="calendar"/>
+                    <img  src={Calendar} alt="calendar"/>
 
                     <p className="text-sm">Fécha límite de inscripción : {deadlineDay} de {deadlineMonth} </p>
                 </div>
