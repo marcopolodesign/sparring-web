@@ -24,9 +24,9 @@ const VideoImage = () => {
             </Header>
             )}
             
-            {content && (
+            {/* {content && (
             // <p className='font-body text-xl text-black'>{content}</p>
-            )}
+            )} */}
 
         
             
