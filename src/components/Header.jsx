@@ -89,6 +89,11 @@ const navigation = [
     });
   };
 
+  useEffect(() => {
+    if (window.location.hash === '#register') {
+      setIsModalOpen(true);
+    }
+  }, []); // Run only once on component mount
   
 
   // Handle form submission
