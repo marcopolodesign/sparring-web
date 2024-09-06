@@ -46,7 +46,7 @@ const Partidos = () => {
             </div>
 
             <div>
-                <h2 className="!text-white font-semibold px-6">{group.group.name} — Partidos</h2>
+                <h2 className="!text-white font-semibold px-6">{group.group.name} — Partidos. {group.group.hours}</h2>
                     <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6 ">
                     {group.matches.map((match) => {
                             return (
