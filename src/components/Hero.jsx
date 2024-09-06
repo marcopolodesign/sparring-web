@@ -38,7 +38,7 @@ export default function Hero() {
           </div>
         </div>
        
-       <div className="px-20 pt-16 sm:pt-18 mx-auto w-full sm:w-[45%]">
+       <div className="px-20 pt-16 sm:pt-18 mx-auto w-full sm:w-[45%] ">
         <img className="mx-auto" src={iPhoneHomeImage} />
        </div>
       </div>
