@@ -14,12 +14,12 @@ const VideoImage = () => {
 
   return (
     <div className="container mx-auto my-16">
-        <div className={`text-images flex flex-col justify-between container mx-auto sm:max-w-[unset]`}>
+        <div className={`text-images flex flex-col justify-center items-center container mx-auto sm:max-w-[unset]`}>
         
         <div className={`text-content w-[45%] relative z-10 flex flex-col justify-center`}>
             
             {title && (
-            <Header>
+            <Header className="text-center">
                 {title}
             </Header>
             )}
