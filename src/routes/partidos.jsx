@@ -16,7 +16,7 @@ const Partidos = () => {
         const fetchUserDetails = async () => {
           try {
             const groupInfo = await getGroupDetails(1,user.id);
-            // console.log(groupInfo, 'GROUP INFO');
+            console.log(groupInfo, 'GROUP INFO');
             setPartner(groupInfo.matchedCouple.otherMember);
             // console.log(partner);
             setGroup(groupInfo);
@@ -69,7 +69,7 @@ const Partidos = () => {
 
             <div className="container mx-auto">
                 <h2 className="!text-white font-semibold px-6">Tabla de posiciones</h2>
-                <Leaderboard isGroup />
+                <Leaderboard isGroup userId={user.id}/>
             </div>
 
 

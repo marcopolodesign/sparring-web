@@ -3,15 +3,15 @@ import Loading from '../Loading';
 import { getTournamentResults, getGroupResults } from '../../api/functions';
 import { SubContainer } from '../../styled';
 
-const Leaderboard = ({isGroup}) => {
+const Leaderboard = ({isGroup, userId}) => {
   const [couples, setCouples] = useState(null);
 
   useEffect(() => {
     const fetchCouples = async () => {
       try {
-        const response = !isGroup ? await getTournamentResults(1,36) : await getGroupResults(1,36) ; // Replace with your actual endpoint
+        const response = !isGroup ? await getTournamentResults(1,36) : await getGroupResults(1,userId) ; // Replace with your actual endpoint
         !isGroup ? setCouples(response.data) : setCouples(response.data.results);
-        console.log(response.data, 'RESPONSE');
+        console.log(response.data, 'GROUP RESULTS');
       } catch (error) {
         console.error('Error fetching tournament results:', error.message);
       }
@@ -42,13 +42,6 @@ return (
                                     <div key={member.id} className="w-10 h-10 bg-lightGreen rounded-full flex items-center justify-center last:mr-0  last:-translate-x-2 border-2 border-white  bg-cover bg-center "
                                          style={{ backgroundImage: `url(${member.profilePicture || ''})` }}
                                  ></div>
-
-                            //   <img
-                            //     key={member.id}
-                            //     src={member.profilePicture || ''}
-                            //     alt={`${member.firstName} ${member.lastName}`}
-                            //     className="w-12 h-12 rounded-full border-2 border-white -mr-4 last:mr-0 bg-lightGreen"
-                            //   />
                             ))}
                         </div>
                         <div className="ml-4 font-normal">
