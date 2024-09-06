@@ -47,10 +47,10 @@ const Torneo = () => {
                     <div key={group.id}>
                         <h2 className="text-xl text-body text-white pl-6">{group.groupName} - Horario: 
                         {
-                                group.group.name === 'Zona A' ? '14:00hs' :
-                                group.group.name === 'Zona B' ? '15:30hs' :
-                                group.group.name === 'Zona C' ? '17:00hs' : 
-                                group.group.name === 'Zona D' ? '18:30hs' : 
+                                group.groupName === 'Zona A' ? ' 14:00hs' :
+                                group.groupName === 'Zona B' ? ' 15:30hs' :
+                                group.groupName === 'Zona C' ? ' 17:00hs' : 
+                                group.groupName === 'Zona D' ? ' 18:30hs' : 
                                 null
                             }
                         </h2>
