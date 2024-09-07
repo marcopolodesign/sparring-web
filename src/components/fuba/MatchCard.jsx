@@ -14,7 +14,7 @@ const MatchCard = ({ match, user }) => {
         const underlineCount = child.querySelectorAll('p.underline').length; // Count underline classes in p elements
 
         // Determine the winner if a child has at least 2 underline p elements
-        if (underlineCount >= 2) {
+        if (underlineCount >= 1) {
           winnerElement = child;
           hasWinner = true;
         }
