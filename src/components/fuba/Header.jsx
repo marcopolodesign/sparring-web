@@ -60,9 +60,9 @@ const HeaderTournament = (props) => {
                 {tournament.sponsors?.data?.length > 0 && (
                     <>
                         <Divider className="mt-6" />
-                        <div className="flex justify-between items-center py-6 px-2">
+                        <div className="flex justify-between items-center flex-wrap py-6 px-2">
                             {tournament.sponsors?.data?.map((sponsor) => (
-                                <div className="max-w-[25%]"  key={sponsor.id}>
+                                <div className="max-w-[30%]"  key={sponsor.id}>
                                     <img src={sponsor.attributes.url} alt={sponsor.attributes.name} />
                                 </div>
                             ))}

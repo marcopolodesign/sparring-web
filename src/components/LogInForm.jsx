@@ -56,6 +56,7 @@ function LoginForm({ setUser }) {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
+              placeholder='Ingresá el mail con el que te registraste'
               autoComplete="email"
               className="block w-full rounded-lg border-0 p-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-lightGreen sm:text-sm sm:leading-6"
             />
@@ -78,6 +79,7 @@ function LoginForm({ setUser }) {
               id="password"
               name="password"
               type="password"
+              placeholder='Ingresá tu DNI sin puntos ni espacios'
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -99,10 +101,10 @@ function LoginForm({ setUser }) {
       </form>
 
       <p className="mt-10 text-center text-sm text-white">
-        Olvidaste tu contraseña?{' '}
-        <span className="font-semibold leading-6 underline">
-          Probá con tu DNI
-        </span>
+        {/* Olvidaste tu contraseña? Probá con tu DNI.{' '} */}
+        <span className="leading-6">
+          Si tenes problemas para ingresar, <a className="underline text-lightGreen font-semibold" href="https://api.whatsapp.com/send?phone=+5491146734407">ponete en contacto</a>
+        </span> 
       </p>
     </div>
     </div>
