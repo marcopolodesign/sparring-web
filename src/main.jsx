@@ -58,7 +58,7 @@ const router = createBrowserRouter([
 
   {
     path: "/ft",
-    element: <Leaderboard />,
+    element: <Torneo />,
   },
 
   // {
