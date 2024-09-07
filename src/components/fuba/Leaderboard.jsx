@@ -11,7 +11,7 @@ const Leaderboard = ({isGroup, userId}) => {
       try {
         const response = !isGroup ? await getTournamentResults(1,36) : await getGroupResults(1,userId) ; // Replace with your actual endpoint
         !isGroup ? setCouples(response.data) : setCouples(response.data.results);
-        console.log(response.data, 'GROUP RESULTS');
+        console.log(response.data, 'GROUP RESULTSSS');
       } catch (error) {
         console.error('Error fetching tournament results:', error.message);
       }

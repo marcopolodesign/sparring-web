@@ -12,7 +12,7 @@ const Torneo = () => {
 
     const [groups, setGroups] = useState(null);
 
-    const tournament = JSON.parse(localStorage.getItem('tournament'));
+    const tournament = JSON.parse(localStorage.getItem('tournament')) || 1;
 
     const user = JSON.parse(localStorage.getItem('user'))
 
@@ -38,7 +38,7 @@ const Torneo = () => {
 
     return (
         <div className="min-h-screen bg-blue  mx-auto">
-            {console.log(tournament.attributes.golden_cup, 'torneo completo')}
+            {/* {console.log(tournament.attributes.golden_cup, 'torneo completo')} */}
             <div className="py-12">
                 <h1 className="!text-white uppercase text-center text-5xl font-display">{tournament?.attributes.name}: Clasificación</h1>
                 <Link to="/fupa/partidos" className="!text-white text-center text-lg font-body mx-auto block" >Ver mis partidos</Link>

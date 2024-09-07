@@ -67,7 +67,7 @@ const Partidos = () => {
                     </ul>
             </div>
 
-            <div className="container mx-auto !hidden">
+            <div className="container mx-auto">
                 <h2 className="!text-white font-semibold px-6">Tabla de posiciones</h2>
                 <Leaderboard isGroup userId={user.id}/>
             </div>
