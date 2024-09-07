@@ -58,7 +58,7 @@ const router = createBrowserRouter([
 
   {
     path: "/ft",
-    element: <Torneo />,
+    element: <Torneo user={user} />,
   },
 
   // {
