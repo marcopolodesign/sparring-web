@@ -18,7 +18,7 @@ const Quarterfinals = () => {
 
     function redirectAfterDelay() {
         // Set the delay to 4 minutes (4 * 60 * 1000 milliseconds)
-        const delay = .2 * 60 * 1000; // 240,000 milliseconds
+        const delay = 1 * 60 * 1000; // 240,000 milliseconds
       
         // URL to redirect to after the delay
         const newUrl = 'http://localhost:5173/oro';
