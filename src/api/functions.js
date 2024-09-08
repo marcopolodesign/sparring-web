@@ -402,6 +402,38 @@ export const addMemberToMatch = async (matchId, userId) => {
   }
 
 }
+export const getQuarterfinalMatches = async (tournamentId, userId) => {
+  try {
+    const response = await axiosInstance.get(`${API_BASE_URL}/fupa/${tournamentId}/quarters/${userId}`);
+    console.log(response.data, 'QUARTERS')
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching quarterfinal matches:', error.message);
+    throw error;
+  }
+};
+
+// Fetch Semifinal Matches
+export const getSemifinalMatches = async (tournamentId, userId) => {
+  try {
+    const response = await axiosInstance.get(`${API_BASE_URL}/fupa/${tournamentId}/semis/${userId}`);
+    return response.data.data;
+  } catch (error) {
+    console.error('Error fetching semifinal matches:', error.message);
+    throw error;
+  }
+};
+
+// Fetch Final Matches
+export const getFinalMatches = async (tournamentId, userId) => {
+  try {
+    const response = await axiosInstance.get(`${API_BASE_URL}/fupa/${tournamentId}/final/${userId}`);
+    return response.data.data;
+  } catch (error) {
+    console.error('Error fetching final matches:', error.message);
+    throw error;
+  }
+};
 export const isEmpty = (obj) => {
   return Object.keys(obj).length === 0;
 };

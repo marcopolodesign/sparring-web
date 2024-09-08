@@ -9,9 +9,9 @@ export default function Nav() {
 
   const navItems = [
       { name: 'Inicio', href: '/fupa/home', icon: HomeIcon  }, // Absolute path for home
-      { name: 'Torneo', href: '/fupa/torneo', icon: TrophyIcon  }, // Absolute path for torneo
-      { name: 'Partidos', href: '/fupa/partidos', icon: RacketIcon  }, // Absolute path for partidos
-      { name: 'Tabla', href: '/fupa/tabla', icon: TableIcon  }, // Absolute path for tabla
+      { name: 'Partidos', href: '/fupa/torneo', icon: TrophyIcon  }, // Absolute path for torneo
+      { name: 'Grupos', href: '/fupa/partidos', icon: RacketIcon  }, // Absolute path for partidos
+      { name: 'Copa', href: '/fupa/tabla', icon: TableIcon  }, // Absolute path for tabla
   ];
 
   return (
