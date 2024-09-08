@@ -2,39 +2,39 @@ import React, { useEffect } from 'react';
 
 const MatchCard = ({ match, user }) => {
   useEffect(() => {
-    // const matches = document.querySelectorAll('.match'); // Select all match divs
+    const matches = document.querySelectorAll('.match'); // Select all match divs
 
-    // matches.forEach(match => {
-    //   const childDivs = match.querySelectorAll('.match > div'); // Select child divs inside the match
-    //   let winnerElement = null;
-    //   let hasWinner = false;
+    matches.forEach(match => {
+      const childDivs = match.querySelectorAll('.match > div'); // Select child divs inside the match
+      let winnerElement = null;
+      let hasWinner = false;
 
-    //   // Loop through child divs to find the one with at least 2 underline p elements
-    //   childDivs.forEach(child => {
-    //     const underlineCount = child.querySelectorAll('p.underline').length; // Count underline classes in p elements
+      // Loop through child divs to find the one with at least 2 underline p elements
+      childDivs.forEach(child => {
+        const underlineCount = child.querySelectorAll('p.underline').length; // Count underline classes in p elements
 
-    //     // Determine the winner if a child has at least 2 underline p elements
-    //     if (underlineCount >= 1) {
-    //       winnerElement = child;
-    //       hasWinner = true;
-    //     }
-    //   });
+        // Determine the winner if a child has at least 2 underline p elements
+        if (underlineCount >= 1) {
+          winnerElement = child;
+          hasWinner = true;
+        }
+      });
 
-    //   // If a winner is found, apply the classes
-    //   if (hasWinner) {
-    //     // Add the match-winner class to the child with at least 2 underline p elements
-    //     if (winnerElement) {
-    //       winnerElement.classList.add('match-winner');
-    //     }
+      // If a winner is found, apply the classes
+      if (hasWinner) {
+        // Add the match-winner class to the child with at least 2 underline p elements
+        if (winnerElement) {
+          winnerElement.classList.add('match-winner');
+        }
 
-    //     // Add match-looser and opacity-50 class to the other child
-    //     childDivs.forEach(child => {
-    //       if (child !== winnerElement) {
-    //         child.classList.add('match-looser', 'opacity-50');
-    //       }
-    //     });
-    //   }
-    // });
+        // Add match-looser and opacity-50 class to the other child
+        childDivs.forEach(child => {
+          if (child !== winnerElement) {
+            child.classList.add('match-looser', 'opacity-50');
+          }
+        });
+      }
+    });
   }, []);
 
   return (
