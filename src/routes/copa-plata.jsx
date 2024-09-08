@@ -5,6 +5,8 @@ import { getQuarterfinalMatches, getSemifinalMatches, getFinalMatches } from '..
 import { Header } from '../styled';
 import { Link } from 'react-router-dom';
 import MatchCardKnockout from '../components/fuba/MatchCardKnockout';
+import Fupa from '../assets/icons/fupa.svg'
+import Logo from '../assets/icons/logo.svg'
 
 const Quarterfinals = () => {
     const [quarterfinals, setQuarterfinals] = useState(null);
@@ -17,7 +19,7 @@ const Quarterfinals = () => {
 
     function redirectAfterDelay() {
         // Set the delay to 4 minutes (4 * 60 * 1000 milliseconds)
-        const delay = 4 * 60 * 1000; // 240,000 milliseconds
+        const delay = 1 * 60 * 1000; // 240,000 milliseconds
       
         // URL to redirect to after the delay
         const newUrl = 'https://sparring-web.vercel.app/oro';
@@ -79,10 +81,21 @@ const Quarterfinals = () => {
 
     return (
         <div className="min-h-screen bg-blue mx-auto">
-            <div className="py-12">
+            <div className="py-12 flex justify-between items-center px-6">
+                <div className="flex items-center gap-10">
+                <div className="w-32 h-32 flex items-center justify-center p-3 bg-[#312FBC] rounded-full relative z-10 border-2 border-white gap-5">
+                     <img src={Fupa} alt="logo" className="m-auto"/>
+                 </div>
                 <h1 className="!text-white uppercase text-center text-5xl font-display">
-                FUPA {quarterfinals.goldenCupMatches?.length > 0 ? 'Copa de Oro' : 'Copa de Plata'}
+                    FUPA {quarterfinals.goldenCupMatches?.length > 0 ? 'Copa de Oro' : 'Copa de Plata'}
                 </h1>
+                </div>
+              
+                <div className="w-36 h-36 flex items-center justify-center">
+                     <img src={Logo} alt="logo" className="m-auto"/>
+                 </div>
+
+              
                 {/* <Link to="/fupa/partidos" className="!text-white text-center text-lg font-body mx-auto block">
                     Ver mis partidos
                 </Link> */}
