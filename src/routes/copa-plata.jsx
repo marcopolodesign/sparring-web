@@ -16,13 +16,12 @@ const Quarterfinals = () => {
     // const tournament = JSON.parse(localStorage.getItem('tournament')) || 1;
     // const user = JSON.parse(localStorage.getItem('user'));
 
-
     function redirectAfterDelay() {
         // Set the delay to 4 minutes (4 * 60 * 1000 milliseconds)
-        const delay = 1 * 60 * 1000; // 240,000 milliseconds
+        const delay = .2 * 60 * 1000; // 240,000 milliseconds
       
         // URL to redirect to after the delay
-        const newUrl = 'https://sparring-web.vercel.app/oro';
+        const newUrl = 'http://localhost:5173/oro';
       
         // Set a timeout to redirect after the delay
         setTimeout(() => {
@@ -32,6 +31,19 @@ const Quarterfinals = () => {
       
       // Call the function to start the 4-minute countdown
       redirectAfterDelay();
+      
+      // Store scroll position before the page unloads
+      window.addEventListener('beforeunload', () => {
+        localStorage.setItem('scrollPosition', window.scrollY);
+      });
+      
+      // Restore scroll position after the page loads
+      window.addEventListener('load', () => {
+        const scrollPosition = localStorage.getItem('scrollPosition');
+        if (scrollPosition) {
+          window.scrollTo(0, parseInt(scrollPosition, 10));
+        }
+      });
 
 
 
@@ -101,7 +113,7 @@ const Quarterfinals = () => {
                 </Link> */}
             </div>
 
-            <div className="flex flex-col gap-10 w-screen pb-10">
+            {/* <div className="flex flex-col gap-10 w-screen pb-10">
                 {quarterfinals.silverCupMatches?.length > 0 && (
                     <div>
                         <h2 className="text-xl text-body text-white pl-6">Cuartos de Final</h2>
@@ -112,13 +124,13 @@ const Quarterfinals = () => {
                         </ul>
                     </div>
                 )}
-            </div>
+            </div> */}
 
-            <div className="flex flex-col gap-10 w-screen pb-10">
+            <div className="flex flex-col gap-2 w-screen pb-10">
             <h2 className="text-xl text-body text-white pl-6">Semi Finales</h2>
                 {semifinals.silverCupSemifinals?.length > 0 && (
                     <div>
-                        <h2 className="text-xl text-body text-white pl-6">Silver Cup Quarterfinals</h2>
+                        {/* <h2 className="text-xl text-body text-white pl-6">Silver Cup Quarterfinals</h2> */}
                         <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
                             {semifinals.silverCupSemifinals.map((match) => (
                                 <MatchCardKnockout match={match} key={match.id} user={'user'} />
