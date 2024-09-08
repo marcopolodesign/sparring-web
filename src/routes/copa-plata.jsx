@@ -21,7 +21,7 @@ const Quarterfinals = () => {
         const delay = 1 * 60 * 1000; // 240,000 milliseconds
       
         // URL to redirect to after the delay
-        const newUrl = 'http://localhost:5173/oro';
+        const newUrl = 'https://sparring-web.vercel.app/oro';
       
         // Set a timeout to redirect after the delay
         setTimeout(() => {
