@@ -31,7 +31,7 @@ const Quarterfinals = () => {
       // Call the function to start the 4-minute countdown
       redirectAfterDelay();
 
-      
+
     useEffect(() => {
         const fetchQuarterfinals = async () => {
             try {

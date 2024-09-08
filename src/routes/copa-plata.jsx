@@ -89,20 +89,6 @@ const Quarterfinals = () => {
             </div>
 
             <div className="flex flex-col gap-10 w-screen pb-10">
-                {quarterfinals.goldenCupMatches?.length > 0 && (
-                    <div>
-                        <h2 className="text-xl text-body text-white pl-6">Cuartos de Final</h2>
-                        <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
-                            {quarterfinals.goldenCupMatches.map((match) => (
-                              <>
-                              {console.log(match)}
-                                <MatchCardKnockout match={match} key={match.id} user={'user'} />
-                                </>
-                            ))}
-                        </ul>
-                    </div>
-              )}
-
                 {quarterfinals.silverCupMatches?.length > 0 && (
                     <div>
                         <h2 className="text-xl text-body text-white pl-6">Cuartos de Final</h2>
@@ -117,20 +103,6 @@ const Quarterfinals = () => {
 
             <div className="flex flex-col gap-10 w-screen pb-10">
             <h2 className="text-xl text-body text-white pl-6">Semi Finales</h2>
-                {semifinals.goldenCupSemifinals?.length > 0 && (
-                    <div>
-                       
-                        <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
-                            {semifinals.goldenCupSemifinals.map((match) => (
-                              <>
-                              {console.log(match)}
-                                <MatchCardKnockout match={match} key={match.id} user={'user'} />
-                                </>
-                            ))}
-                        </ul>
-                    </div>
-                )}
-
                 {semifinals.silverCupSemifinals?.length > 0 && (
                     <div>
                         <h2 className="text-xl text-body text-white pl-6">Silver Cup Quarterfinals</h2>
@@ -145,19 +117,7 @@ const Quarterfinals = () => {
 
             <div className="flex flex-col gap-10 w-screen pb-60">
             <h2 className="text-xl text-body text-white pl-6">Final</h2>
-                {final.goldenCupFinal?.length > 0 && (
-                    <div>
-                        <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
-                            {final.goldenCupFinal.map((match) => (
-                              <>
-                              {console.log(match)}
-                                <MatchCardKnockout match={match} key={match.id} user={'user'} />
-                                </>
-                            ))}
-                        </ul>
-                    </div>
-                )}
-
+    
                 {final.silverCupFinal?.length > 0 && (
                     <div>
                         <h2 className="text-xl text-body text-white pl-6">Silver Cup Quarterfinals</h2>
