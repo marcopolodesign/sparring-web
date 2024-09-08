@@ -50,7 +50,7 @@ const Quarterfinals = () => {
 
         const fetchSemis = async () => {
           try {
-              const data = await getSemifinalMatches(1, 39); // Fetch semis matches
+              const data = await getSemifinalMatches(1, 59); // Fetch semis matches
               console.log(data, 'semis')
               setSemiFinals(data); // Save the quarterfinal matches in the state
           } catch (error) {
@@ -120,7 +120,7 @@ const Quarterfinals = () => {
                     <div>
                         <h2 className="text-xl text-body text-white pl-6">Silver Cup Quarterfinals</h2>
                         <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
-                            {quarterfinals.silverCupSemifinals.map((match) => (
+                            {semifinals.silverCupSemifinals.map((match) => (
                                 <MatchCardKnockout match={match} key={match.id} user={'user'} />
                             ))}
                         </ul>

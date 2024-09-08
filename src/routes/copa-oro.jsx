@@ -17,21 +17,21 @@ const Quarterfinals = () => {
     // const user = JSON.parse(localStorage.getItem('user'));
 
 
-    // function redirectAfterDelay() {
-    //     // Set the delay to 4 minutes (4 * 60 * 1000 milliseconds)
-    //     const delay = 1 * 60 * 1000; // 240,000 milliseconds
+    function redirectAfterDelay() {
+        // Set the delay to 4 minutes (4 * 60 * 1000 milliseconds)
+        const delay = 1 * 60 * 1000; // 240,000 milliseconds
       
-    //     // URL to redirect to after the delay
-    //     const newUrl = 'https://sparring-web.vercel.app/plata';
+        // URL to redirect to after the delay
+        const newUrl = 'https://sparring-web.vercel.app/plata';
       
-    //     // Set a timeout to redirect after the delay
-    //     setTimeout(() => {
-    //       window.location.href = newUrl;
-    //     }, delay);
-    //   }
+        // Set a timeout to redirect after the delay
+        setTimeout(() => {
+          window.location.href = newUrl;
+        }, delay);
+      }
       
-    //   // Call the function to start the 4-minute countdown
-    //   redirectAfterDelay();
+      // Call the function to start the 4-minute countdown
+      redirectAfterDelay();
 
 
     useEffect(() => {
@@ -115,16 +115,7 @@ const Quarterfinals = () => {
                     </div>
               )}
 
-                {quarterfinals.silverCupMatches?.length > 0 && (
-                    <div>
-                        <h2 className="text-xl text-body text-white pl-6">Silver Cup Quarterfinals</h2>
-                        <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
-                            {quarterfinals.silverCupMatches.map((match) => (
-                                <MatchCardKnockout match={match} key={match.id} user={'user'} />
-                            ))}
-                        </ul>
-                    </div>
-                )}
+              
             </div>
 
             <div className="flex flex-col gap-10 w-screen pb-10">
@@ -143,16 +134,7 @@ const Quarterfinals = () => {
                     </div>
                 )}
 
-                {semifinals.silverCupSemifinals?.length > 0 && (
-                    <div>
-                        <h2 className="text-xl text-body text-white pl-6">Silver Cup Quarterfinals</h2>
-                        <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
-                            {quarterfinals.silverCupSemifinals.map((match) => (
-                                <MatchCardKnockout match={match} key={match.id} user={'user'} />
-                            ))}
-                        </ul>
-                    </div>
-                )}
+               
             </div>
 
             <div className="flex flex-col gap-10 w-screen pb-60">
@@ -170,16 +152,7 @@ const Quarterfinals = () => {
                     </div>
                 )}
 
-                {final.silverCupFinal?.length > 0 && (
-                    <div>
-                        <h2 className="text-xl text-body text-white pl-6">Silver Cup Quarterfinals</h2>
-                        <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
-                            {final.silverCupFinal.map((match) => (
-                                <MatchCardKnockout match={match} key={match.id} user={'user'} />
-                            ))}
-                        </ul>
-                    </div>
-                )}
+              
             </div>
         </div>
     );
