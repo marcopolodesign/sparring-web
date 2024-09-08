@@ -105,7 +105,7 @@ const Quarterfinals = () => {
 
                 {quarterfinals.silverCupMatches?.length > 0 && (
                     <div>
-                        <h2 className="text-xl text-body text-white pl-6">Silver Cup Quarterfinals</h2>
+                        <h2 className="text-xl text-body text-white pl-6">Cuartos de Final</h2>
                         <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
                             {quarterfinals.silverCupMatches.map((match) => (
                                 <MatchCardKnockout match={match} key={match.id} user={'user'} />
