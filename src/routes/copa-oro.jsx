@@ -17,21 +17,21 @@ const Quarterfinals = () => {
     // const user = JSON.parse(localStorage.getItem('user'));
 
 
-    function redirectAfterDelay() {
-        // Set the delay to 4 minutes (4 * 60 * 1000 milliseconds)
-        const delay = 1 * 60 * 1000; // 240,000 milliseconds
+    // function redirectAfterDelay() {
+    //     // Set the delay to 4 minutes (4 * 60 * 1000 milliseconds)
+    //     const delay = 1 * 60 * 1000; // 240,000 milliseconds
       
-        // URL to redirect to after the delay
-        const newUrl = 'https://sparring-web.vercel.app/plata';
+    //     // URL to redirect to after the delay
+    //     const newUrl = 'https://sparring-web.vercel.app/plata';
       
-        // Set a timeout to redirect after the delay
-        setTimeout(() => {
-          window.location.href = newUrl;
-        }, delay);
-      }
+    //     // Set a timeout to redirect after the delay
+    //     setTimeout(() => {
+    //       window.location.href = newUrl;
+    //     }, delay);
+    //   }
       
-      // Call the function to start the 4-minute countdown
-      redirectAfterDelay();
+    //   // Call the function to start the 4-minute countdown
+    //   redirectAfterDelay();
 
 
     useEffect(() => {
