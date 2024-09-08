@@ -417,7 +417,7 @@ export const getQuarterfinalMatches = async (tournamentId, userId) => {
 export const getSemifinalMatches = async (tournamentId, userId) => {
   try {
     const response = await axiosInstance.get(`${API_BASE_URL}/fupa/${tournamentId}/semis/${userId}`);
-    return response.data.data;
+    return response.data;
   } catch (error) {
     console.error('Error fetching semifinal matches:', error.message);
     throw error;
@@ -428,7 +428,7 @@ export const getSemifinalMatches = async (tournamentId, userId) => {
 export const getFinalMatches = async (tournamentId, userId) => {
   try {
     const response = await axiosInstance.get(`${API_BASE_URL}/fupa/${tournamentId}/final/${userId}`);
-    return response.data.data;
+    return response.data;
   } catch (error) {
     console.error('Error fetching final matches:', error.message);
     throw error;

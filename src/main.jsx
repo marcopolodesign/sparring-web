@@ -9,6 +9,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Container from "./components/fuba/Container";
 import TournamentHome from './components/Home'
 import Leaderboard from './routes/Leaderboard'
+import CopaOro from './routes/copa-oro'
+import CopaPlata from './routes/copa-plata'
 
 import {
   createBrowserRouter,
@@ -60,6 +62,17 @@ const router = createBrowserRouter([
     path: "/ft",
     element: <Torneo user={user} />,
   },
+
+  {
+    path: "/oro",
+    element: <CopaOro />,
+  },
+
+  {
+    path: "/plata",
+    element: <CopaPlata />,
+  },
+
 
   // {
   //   path: "/tabla",

@@ -10,13 +10,13 @@ const Quarterfinals = () => {
     const [quarterfinals, setQuarterfinals] = useState(null);
     const [semifinals, setSemiFinals] = useState(null);
 
-    const tournament = JSON.parse(localStorage.getItem('tournament')) || 1;
-    const user = JSON.parse(localStorage.getItem('user'));
+    // const tournament = JSON.parse(localStorage.getItem('tournament')) || 1;
+    // const user = JSON.parse(localStorage.getItem('user'));
 
     useEffect(() => {
         const fetchQuarterfinals = async () => {
             try {
-                const data = await getQuarterfinalMatches(tournament.id, user.id); // Fetch quarterfinal matches
+                const data = await getQuarterfinalMatches(1, 39); // Fetch quarterfinal matches
                 console.log(data, 'quarters')
                 setQuarterfinals(data); // Save the quarterfinal matches in the state
             } catch (error) {
@@ -28,7 +28,7 @@ const Quarterfinals = () => {
 
         const fetchSemis = async () => {
           try {
-              const data = await getSemifinalMatches(tournament.id, user.id); // Fetch quarterfinal matches
+              const data = await getSemifinalMatches(1, 39); // Fetch quarterfinal matches
               console.log(data, 'quarters')
               setSemiFinals(data); // Save the quarterfinal matches in the state
           } catch (error) {
@@ -38,7 +38,7 @@ const Quarterfinals = () => {
 
       fetchSemis();
 
-    }, [tournament.id]);
+    }, []);
 
     if (!quarterfinals) {
         return <Loading />;
@@ -48,7 +48,7 @@ const Quarterfinals = () => {
         <div className="min-h-screen bg-blue mx-auto">
             <div className="py-12">
                 <h1 className="!text-white uppercase text-center text-5xl font-display">
-                {tournament?.attributes.name} {quarterfinals.goldenCupMatches?.length > 0 ? 'Copa de Oro' : 'Copa de Plata'}
+                FUPA {quarterfinals.goldenCupMatches?.length > 0 ? 'Copa de Oro' : 'Copa de Plata'}
                 </h1>
                 {/* <Link to="/fupa/partidos" className="!text-white text-center text-lg font-body mx-auto block">
                     Ver mis partidos
@@ -63,7 +63,7 @@ const Quarterfinals = () => {
                             {quarterfinals.goldenCupMatches.map((match) => (
                               <>
                               {console.log(match)}
-                                <MatchCardKnockout match={match} key={match.id} user={user} />
+                                <MatchCardKnockout match={match} key={match.id} user={'user'} />
                                 </>
                             ))}
                         </ul>
@@ -75,7 +75,7 @@ const Quarterfinals = () => {
                         <h2 className="text-xl text-body text-white pl-6">Silver Cup Quarterfinals</h2>
                         <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
                             {quarterfinals.silverCupMatches.map((match) => (
-                                <MatchCardKnockout match={match} key={match.id} user={user} />
+                                <MatchCardKnockout match={match} key={match.id} user={'user'} />
                             ))}
                         </ul>
                     </div>
@@ -91,7 +91,7 @@ const Quarterfinals = () => {
                             {quarterfinals.goldenCupMatches.map((match) => (
                               <>
                               {console.log(match)}
-                                <MatchCardKnockout match={match} key={match.id} user={user} />
+                                <MatchCardKnockout match={match} key={match.id} user={'user'} />
                                 </>
                             ))}
                         </ul>
@@ -103,7 +103,7 @@ const Quarterfinals = () => {
                         <h2 className="text-xl text-body text-white pl-6">Silver Cup Quarterfinals</h2>
                         <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
                             {quarterfinals.silverCupMatches.map((match) => (
-                                <MatchCardKnockout match={match} key={match.id} user={user} />
+                                <MatchCardKnockout match={match} key={match.id} user={'user'} />
                             ))}
                         </ul>
                     </div>
@@ -119,7 +119,7 @@ const Quarterfinals = () => {
                             {quarterfinals.goldenCupMatches.map((match) => (
                               <>
                               {console.log(match)}
-                                <MatchCardKnockout match={match} key={match.id} user={user} />
+                                <MatchCardKnockout match={match} key={match.id} user={'user'} />
                                 </>
                             ))}
                         </ul>
@@ -131,7 +131,7 @@ const Quarterfinals = () => {
                         <h2 className="text-xl text-body text-white pl-6">Silver Cup Quarterfinals</h2>
                         <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
                             {quarterfinals.silverCupMatches.map((match) => (
-                                <MatchCardKnockout match={match} key={match.id} user={user} />
+                                <MatchCardKnockout match={match} key={match.id} user={'user'} />
                             ))}
                         </ul>
                     </div>

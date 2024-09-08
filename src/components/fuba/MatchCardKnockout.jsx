@@ -56,10 +56,10 @@ const MatchCard = ({ match, user }) => {
               </div>
               <div className="flex flex-col items-center text-center ">
                 <p className='break-keep line-clamp-1'>
-                  {couple.members[0].id === user.id ? 'Vos' : `${couple.members[0].firstName.charAt(0)}. ${couple.members[0].lastName}`}
+                  {`${couple.members[0].firstName.charAt(0)}. ${couple.members[0].lastName}`}
                 </p>
                 <p className='break-keep line-clamp-1'>
-                  {couple.members[1].id === user.id ? 'Vos' : `${couple.members[1].firstName.charAt(0)}. ${couple.members[1].lastName}`}
+                  {`${couple.members[1].firstName.charAt(0)}. ${couple.members[1].lastName}`}
                 </p>
               </div>
             </div>
@@ -67,7 +67,7 @@ const MatchCard = ({ match, user }) => {
             <div className="flex gap-3">
               {couple.sets.map((set, index) => (
                 <div key={index} className={`flex items-center`}>
-                  <p className={`font-display text-6xl text-gray-300 ${set.gamesWon >= 6 ? '!text-darkGreen underline' : ''}`}>{set.gamesWon}</p>
+                  <p className={`font-display text-6xl text-gray-300 ${set.gamesWon >= 4 ? '!text-darkGreen underline' : ''}`}>{set.gamesWon}</p>
                 </div>
               ))}
             </div>
