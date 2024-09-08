@@ -131,7 +131,7 @@ const Quarterfinals = () => {
 
               
             </div> */}
-
+{/* 
             <div className="flex flex-col gap-2 w-screen pb-10">
             <h2 className="text-xl text-body text-white pl-6">Semi Finales</h2>
                 {semifinals.goldenCupSemifinals?.length > 0 && (
@@ -149,7 +149,7 @@ const Quarterfinals = () => {
                 )}
 
                
-            </div>
+            </div> */}
 
             <div className="flex flex-col gap-10 w-screen pb-60">
             <h2 className="text-xl text-body text-white pl-6">Final</h2>
