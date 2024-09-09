@@ -18,34 +18,34 @@ const Quarterfinals = () => {
 
 
 
-    function redirectAfterDelay() {
-        // Set the delay to 4 minutes (4 * 60 * 1000 milliseconds)
-        const delay = 1 * 60 * 1000; // 240,000 milliseconds
+    // function redirectAfterDelay() {
+    //     // Set the delay to 4 minutes (4 * 60 * 1000 milliseconds)
+    //     const delay = 1 * 60 * 1000; // 240,000 milliseconds
       
-        // URL to redirect to after the delay
-        const newUrl = 'https://sparring-web.vercel.app/plata'
+    //     // URL to redirect to after the delay
+    //     const newUrl = 'https://sparring-web.vercel.app/plata'
       
-        // Set a timeout to redirect after the delay
-        setTimeout(() => {
-          window.location.href = newUrl;
-        }, delay);
-      }
+    //     // Set a timeout to redirect after the delay
+    //     setTimeout(() => {
+    //       window.location.href = newUrl;
+    //     }, delay);
+    //   }
       
-      // Call the function to start the 4-minute countdown
-      redirectAfterDelay();
+    //   // Call the function to start the 4-minute countdown
+    //   redirectAfterDelay();
       
-      // Store scroll position before the page unloads
-      window.addEventListener('beforeunload', () => {
-        localStorage.setItem('scrollPosition', window.scrollY);
-      });
+    //   // Store scroll position before the page unloads
+    //   window.addEventListener('beforeunload', () => {
+    //     localStorage.setItem('scrollPosition', window.scrollY);
+    //   });
       
-      // Restore scroll position after the page loads
-      window.addEventListener('load', () => {
-        const scrollPosition = localStorage.getItem('scrollPosition');
-        if (scrollPosition) {
-          window.scrollTo(0, parseInt(scrollPosition, 10));
-        }
-      });
+    //   // Restore scroll position after the page loads
+    //   window.addEventListener('load', () => {
+    //     const scrollPosition = localStorage.getItem('scrollPosition');
+    //     if (scrollPosition) {
+    //       window.scrollTo(0, parseInt(scrollPosition, 10));
+    //     }
+    //   });
 
 
     useEffect(() => {
@@ -108,21 +108,21 @@ const Quarterfinals = () => {
                      <img src={Logo} alt="logo" className="m-auto"/>
                  </div>
 
-              
-                {/* <Link to="/fupa/partidos" className="!text-white text-center text-lg font-body mx-auto block">
+{/*               
+                <Link to="/fupa/partidos" className="!text-white text-center text-lg font-body mx-auto block">
                     Ver mis partidos
                 </Link> */}
             </div>
 
-            {/* <div className="flex flex-col gap-10 w-screen pb-10">
+            <div className="flex flex-col gap-10 w-screen pb-10">
                 {quarterfinals.goldenCupMatches?.length > 0 && (
                     <div>
-                        <h2 className="text-xl text-body text-white pl-6">Cuartos de Final</h2>
-                        <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
+                        <h2 className="text-xl text-body text-white text-center">Cuartos de Final</h2>
+                        <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6 justify-around">
                             {quarterfinals.goldenCupMatches.map((match) => (
                               <>
                               {console.log(match)}
-                                <MatchCardKnockout match={match} key={match.id} user={'user'} />
+                                <MatchCardKnockout gamesToWin={4} match={match} key={match.id} user={'user'} />
                                 </>
                             ))}
                         </ul>
@@ -130,18 +130,18 @@ const Quarterfinals = () => {
               )}
 
               
-            </div> */}
-{/* 
+            </div>
+
             <div className="flex flex-col gap-2 w-screen pb-10">
-            <h2 className="text-xl text-body text-white pl-6">Semi Finales</h2>
+            <h2 className="text-xl text-body text-white text-center">Semi Finales</h2>
                 {semifinals.goldenCupSemifinals?.length > 0 && (
                     <div>
                        
-                        <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
+                        <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6 justify-around">
                             {semifinals.goldenCupSemifinals.map((match) => (
                               <>
                               {console.log(match)}
-                                <MatchCardKnockout match={match} key={match.id} user={'user'} />
+                                <MatchCardKnockout gamesToWin={4} match={match} key={match.id} user={'user'} />
                                 </>
                             ))}
                         </ul>
@@ -149,17 +149,17 @@ const Quarterfinals = () => {
                 )}
 
                
-            </div> */}
+            </div>
 
             <div className="flex flex-col gap-10 w-screen pb-60">
-            <h2 className="text-xl text-body text-white pl-6">Final</h2>
+            <h2 className="text-xl text-body text-white text-center">Final</h2>
                 {final.goldenCupFinal?.length > 0 && (
                     <div>
-                        <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
+                        <ul className="flex w-full gap-8 overflow-scroll justify-center">
                             {final.goldenCupFinal.map((match) => (
                               <>
                               {console.log(match)}
-                                <MatchCardKnockout match={match} key={match.id} user={'user'} />
+                                <MatchCardKnockout gamesToWin={6} match={match} key={match.id} user={'user'} />
                                 </>
                             ))}
                         </ul>
