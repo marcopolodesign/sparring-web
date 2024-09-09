@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 
+
 @font-face {
   font-family: "Thunder", sans-serif;
   src: url(../fonts/Roboto-Regular.ttf);
@@ -40,3 +41,15 @@
 .main-font {
   font-family: sans-serif;
 }
+
+.smooth-t {
+  transition: all 0.45s cubic-bezier(0.4, 0, 0, 1);
+}
+
+.smooth-t-long {
+  transition: all 2.85s cubic-bezier(0.4, 0, 0, 1);
+}
+
+/* .custom.drawer.ant-drawer {
+  transition: all 2.85s cubic-bezier(0.4, 0, 0, 1);
+} */
