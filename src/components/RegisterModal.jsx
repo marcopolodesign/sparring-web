@@ -36,7 +36,9 @@ export default function Modal({ loading, setOpen, open }) {
   useEffect(() => {
     setUserData((prevData) => ({
       ...prevData,
-      username: `${prevData.firstName}${prevData.lastName}`,
+      username: `${prevData.firstName}${prevData.lastName}`
+      .replace(/\s+/g, '') // Remove any spaces
+      .toLowerCase() // Convert to lowercase
     }));
   }, [userData.firstName, userData.lastName]);
 
@@ -47,9 +49,11 @@ export default function Modal({ loading, setOpen, open }) {
     try {
       const response = await createUser(userData); // Call createUser function
       console.log('User created successfully:', response);
-      setOpen(false); // Close modal on success
+    //   setOpen(false); // Close modal on success
+      onClose()
     } catch (error) {
-      console.error('Error creating user:', error);
+      console.error('Error creating user:', error.response.data.error.message);
+      alert(`Error al crear usuario: ${error.response.data.error.message}`);
     } finally {
       setIsSubmitting(false); // Hide loading spinner
     }
@@ -57,6 +61,16 @@ export default function Modal({ loading, setOpen, open }) {
 
   const onClose = () => {
     setOpen(false);
+    setUserData({
+        username: '',
+        password: 'sparring123',
+        email: '',
+        firstName: '',
+        lastName: '',
+        document: '',
+        phone: '',
+        attributes: [{ utm_source: 'website-beta' }]
+      });
   };
 
   return (
