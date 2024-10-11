@@ -223,6 +223,17 @@ export const getTournamentResults = async (tournamentId) => {
   }
 }
 
+export const getTournamentLeaderboard = async (tournamentId) => {
+  try {
+    const response = await axiosInstance.get(`/fupa/${tournamentId}/leaderboard`);
+    return response;
+  } catch (error) {
+    console.error(`Error fetching tournament results: ${error.message}`, error);
+    throw error;
+  }
+}
+
+
 export const getTournamentPlayers = async (tournamentId) => {
 
   try {

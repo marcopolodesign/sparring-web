@@ -1,29 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import Loading from '../Loading';
-import { getTournamentResults, getGroupResults } from '../../api/functions';
+import { useSearchParams } from 'react-router-dom';
+
+import { getTournamentResults, getGroupResults, getTournamentLeaderboard } from '../../api/functions';
 import { SubContainer } from '../../styled';
 
-const Leaderboard = ({isGroup, userId}) => {
+const Leaderboard = ({isGroup, userId, isLeaderboard}) => {
   const [couples, setCouples] = useState(null);
+  const [searchParams] = useSearchParams();
+
+  // Extract the 'tournament_id' param
+  const tournamentId = searchParams.get('tournament_id');
+
+  console.log(tournamentId)
 
   useEffect(() => {
     const fetchCouples = async () => {
       try {
-        const response = !isGroup ? await getTournamentResults(1,36) : await getGroupResults(1,userId) ; // Replace with your actual endpoint
-        !isGroup ? setCouples(response.data) : setCouples(response.data.results);
-        console.log(response.data, 'GROUP RESULTSSS');
+        let response;
+
+        if (isLeaderboard) {
+          // Fetch leaderboard results
+          response = await getTournamentLeaderboard(tournamentId);
+
+          console.log(response.data)
+        } else {
+          // Fetch tournament or group results based on isGroup
+          response = !isGroup
+            ? await getTournamentResults(tournamentId, 36)
+            : await getGroupResults(tournamentId, userId);
+            setCouples(!isGroup ? response.data : response.data.results);
+        }
+
+        // Set the couples data based on the response format
+        setCouples(!isGroup ? response.data : response.data.results);
       } catch (error) {
         console.error('Error fetching tournament results:', error.message);
       }
     };
 
-    fetchCouples();
-  }, []);
+    if (tournamentId) {
+      fetchCouples(); // Only call fetchCouples if tournamentId is defined
+    }
+  }, [tournamentId, isGroup, userId, isLeaderboard]); // Ensure all dependencies are included
 
+  // If couples data is not available yet, return an empty div (can be replaced with a loading state)
   if (!couples) {
-   return (<div></div>);
+    return <div>Loading...</div>;
   }
-
   // const sortedCouples = sortCouplesByMatchesWon(couples);
 
 return (
@@ -53,7 +77,7 @@ return (
                             ))}
                         </div>
                     </div>
-                    <div className="text-2xl font-display font-bold">{couple.matchesWon}</div>
+                    <div className="text-2xl font-display font-bold">{couple.matchesWon | couple.points}</div>
                 </div>
             ))}
         </div>

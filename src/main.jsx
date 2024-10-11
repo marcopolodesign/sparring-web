@@ -73,6 +73,11 @@ const router = createBrowserRouter([
     element: <CopaPlata />,
   },
 
+  {
+    path: "/leaderboard",
+    element: <Leaderboard isLeaderBoard/>,
+  }
+
 
   // {
   //   path: "/tabla",
