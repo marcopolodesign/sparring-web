@@ -10,7 +10,7 @@ const Leaderboard = ({isGroup, userId, isLeaderboard}) => {
   const [searchParams] = useSearchParams();
 
   // Extract the 'tournament_id' param
-  const tournamentId = searchParams.get('tournament_id');
+  const tournamentId = searchParams.get('tournament_id') || 1;
 
   console.log(tournamentId)
 

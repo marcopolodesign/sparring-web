@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Nav from '../components/fuba/Nav';
+import { useSearchParams } from 'react-router-dom';
 import Loading from '../components/Loading';
 import { getQuarterfinalMatches, getSemifinalMatches, getFinalMatches } from '../api/functions'; // API function to fetch quarterfinals
 import { Header } from '../styled';
@@ -16,42 +17,15 @@ const Quarterfinals = () => {
     // const tournament = JSON.parse(localStorage.getItem('tournament')) || 1;
     // const user = JSON.parse(localStorage.getItem('user'));
 
+    const [searchParams] = useSearchParams();
+    const tournamentId = searchParams.get('tournament_id') || 1;
 
-
-    // function redirectAfterDelay() {
-    //     // Set the delay to 4 minutes (4 * 60 * 1000 milliseconds)
-    //     const delay = 1 * 60 * 1000; // 240,000 milliseconds
-      
-    //     // URL to redirect to after the delay
-    //     const newUrl = 'https://sparring-web.vercel.app/plata'
-      
-    //     // Set a timeout to redirect after the delay
-    //     setTimeout(() => {
-    //       window.location.href = newUrl;
-    //     }, delay);
-    //   }
-      
-    //   // Call the function to start the 4-minute countdown
-    //   redirectAfterDelay();
-      
-    //   // Store scroll position before the page unloads
-    //   window.addEventListener('beforeunload', () => {
-    //     localStorage.setItem('scrollPosition', window.scrollY);
-    //   });
-      
-    //   // Restore scroll position after the page loads
-    //   window.addEventListener('load', () => {
-    //     const scrollPosition = localStorage.getItem('scrollPosition');
-    //     if (scrollPosition) {
-    //       window.scrollTo(0, parseInt(scrollPosition, 10));
-    //     }
-    //   });
 
 
     useEffect(() => {
         const fetchQuarterfinals = async () => {
             try {
-                const data = await getQuarterfinalMatches(1, 36); // Fetch quarterfinal matches
+                const data = await getQuarterfinalMatches(tournamentId, 36); // Fetch quarterfinal matches
                 console.log(data, 'quarters')
                 setQuarterfinals(data); // Save the quarterfinal matches in the state
             } catch (error) {
@@ -63,7 +37,7 @@ const Quarterfinals = () => {
 
         const fetchSemis = async () => {
           try {
-              const data = await getSemifinalMatches(1, 36); // Fetch semis matches
+              const data = await getSemifinalMatches(tournamentId, 36); // Fetch semis matches
               console.log(data, 'semis')
               setSemiFinals(data); // Save the quarterfinal matches in the state
           } catch (error) {
@@ -76,7 +50,7 @@ const Quarterfinals = () => {
 
       const fetchFinal = async () => {
         try {
-            const data = await getFinalMatches(1, 36); // Fetch final matches
+            const data = await getFinalMatches(tournamentId, 36); // Fetch final matches
             console.log(data, 'final')
             setFinal(data); // Save the quarterfinal matches in the state
         } catch (error) {

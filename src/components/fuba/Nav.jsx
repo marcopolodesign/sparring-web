@@ -11,7 +11,7 @@ export default function Nav() {
       { name: 'Inicio', href: '/fupa/home', icon: HomeIcon  }, // Absolute path for home
       { name: 'Partidos', href: '/fupa/torneo', icon: TrophyIcon  }, // Absolute path for torneo
       { name: 'Grupos', href: '/fupa/partidos', icon: RacketIcon  }, // Absolute path for partidos
-      { name: 'Copa', href: '/fupa/tabla', icon: TableIcon  }, // Absolute path for tabla
+      { name: 'Copa', href: '/leaderboard?tournament_id=1', icon: TableIcon  }, // Absolute path for tabla
   ];
 
   return (
