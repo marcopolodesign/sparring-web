@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Header from './components/Header';
 import VideoImage from './components/video-image';
 import Modal from './components/RegisterModal';
+import TextImage from './components/text-image';
 import { initGA, logPageView } from './analytics'; // Import the Google Analytics functions
 
 function App() {
@@ -24,6 +25,43 @@ function App() {
     }, 2000);
   };
 
+  const content1 = {
+    features: [
+      {
+        title: "Matchmaking Personalizado",
+        description: "Encontramos el compañero ideal para vos, adaptándonos a tus preferencias."
+      },
+      {
+        title: "Reservá Canchas en Segundos",
+        description: "Descubrí canchas y reservá según disponibilidad elegida."
+      },
+      {
+        title: "Una Comunidad Activa de Paddle",
+        description: "Formá parte de un grupo de jugadores con tu misma pasión y enterate de eventos y competiciones."
+      }
+    ],
+    image: {
+      alt: "Product screenshot",
+      src: "./src/assets/images/matches-grid.jpg",
+    }
+  }
+
+
+  const content2 = {
+    image: {
+      alt: "Product screenshot",
+      src: "./src/assets/images/matches-grid.jpg",
+    }
+  }
+
+
+  const content3 = {
+    image: {
+      alt: "Product screenshot",
+      src: "./src/assets/images/venue.jpg",
+    }
+  }
+
 
 
   useEffect(() => {
@@ -41,6 +79,31 @@ function App() {
       <Header showLoading={showLoading} />
       <Hero showLoading={showLoading} />
       <VideoImage />
+      <TextImage
+        title={'Jugadores buscando jugadores'}
+        mainHeading={'Jugá Mejor, Jugá Más'}
+        description={"Sparring te conecta con los mejores compañeros de paddle en función de tu nivel, ubicación y horarios. No importa si sos principiante o avanzado, en Sparring siempre encontrás a alguien con quien jugar."}
+        features={content1.features}
+        image={content1.image}
+        reverse={true} 
+      />
+
+      <TextImage
+        title={'Descubrí nuevos partidos'}
+        mainHeading={'Encuentra tu Partido Ideal en Paddle'}
+        description={"Con Sparring, encontrar compañeros de paddle a tu nivel y disponibilidad nunca fue tan fácil. Ahora podés conectar, jugar y mejorar cada vez que quieras, desde donde estés. Sumate a una comunidad de apasionados y llevá tu juego al siguiente nivel."}
+        // features={content1.features}
+        image={content2.image}
+      />
+
+      <TextImage
+        title={'Buscá canchas, sin ver un excel imposible'}
+        mainHeading={'Reserva Rápido y Sin Complicaciones'}
+        description={"Accedé a una red de canchas cerca de ti, consulta disponibilidad y elige el horario que mejor te convenga. Ahorra tiempo y asegura tu lugar para jugar en las mejores canchas."}
+        // features={content1.features}
+        image={content3.image}
+        reverse={false} 
+      />
       <Modal showLoading={showLoading} setOpen={setOpen} open={open}/>
     </>
   );
