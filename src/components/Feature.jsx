@@ -3,10 +3,10 @@ import React from 'react'
 export default function Feature({...props}) {
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-10">
-        <div className={`p-10 rounded-lg overflow-hidden bg-${props.bgColor} gap-14 mx-auto max-w-2xl grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:flex ${props.reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
+        <div className={`p-5 sm:p-10 rounded-lg overflow-hidden bg-${props.bgColor} gap-14 mx-auto max-w-2xl grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:flex ${props.reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
             <div className="lg:max-w-lg flex flex-col gap-6 lg:pr-8 lg:pt-4">
                 {props.icon && props.icon}
-                <div className="text-lightGreen lg:text-6xl font-bold font-display uppercase leading-none mt-6">
+                <div className="text-lightGreen text-6xl font-bold font-display uppercase leading-none mt-6">
                     {props.mainHeading}
                 </div>
 
