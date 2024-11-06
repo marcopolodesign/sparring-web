@@ -6,7 +6,12 @@ import Header from './components/Header';
 import VideoImage from './components/video-image';
 import Modal from './components/RegisterModal';
 import TextImage from './components/text-image';
+import Feature from './components/Feature';
 import { initGA, logPageView } from './analytics'; // Import the Google Analytics functions
+
+import SparringClubIcon from '/src/assets/icons/sparring-club';
+import SparringCoachIcon from '/src/assets/icons/sparring-coach';
+
 
 function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -62,6 +67,21 @@ function App() {
     }
   }
 
+  const content4 = {
+    image: {
+      alt: "Calendario sparring club",
+      src: "../../assets/calendar-sparring-club.png",
+    }
+  }
+
+  const content5 = {
+    image: {
+      alt: "Calendario sparring Coaches",
+      src: "../../assets/sparring-coach.png",
+    }
+  }
+
+
 
 
   useEffect(() => {
@@ -104,6 +124,10 @@ function App() {
         image={content3.image}
         reverse={true} 
       />
+
+      <Feature icon={<SparringClubIcon />} bgColor="blue" mainHeading={'Gestioná tu club gratis con SPARRING CLUB'} description={'Calendarizá tus horarios de manera automática y fácil, activá tus clientes y visualizá tus cobros para mejorar el rendimiento de tu club.'} image={content4.image}/>
+
+      <Feature icon={<SparringCoachIcon />} bgColor="veryViolet" mainHeading={'La mejor herramienta para coaches de pádel '} description={'Tu agenda completa, en tu bolsillo. Visualizá tu disponibilidad y esperá a que tus alumnos nuevos se anoten.'} image={content5.image}/>
       <Modal showLoading={showLoading} setOpen={setOpen} open={open}/>
     </>
   );

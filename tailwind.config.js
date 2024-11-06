@@ -13,9 +13,10 @@ export default {
         blue: '#0F5CCD',
         lightBlue: '#699FEF',
         orange: '#EE8C55',
+        veryViolet: '#7A41C0',
         brandGreen: '#28a745',
         lightGrey: '#EDEAEA',
-        textGrey: '#585858'
+        textGrey: '#585858',
       },
       fontFamily: {
         // Add your custom fonts here

@@ -53,3 +53,7 @@
 /* .custom.drawer.ant-drawer {
   transition: all 2.85s cubic-bezier(0.4, 0, 0, 1);
 } */
+
+.bg-veryViolet {
+  background-color: #7A41C0;
+}
