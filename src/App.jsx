@@ -42,7 +42,7 @@ function App() {
     ],
     image: {
       alt: "Product screenshot",
-      src: "/assets/images/matches-grid.jpg",
+      src: "../../assets/matches-grid.jpg",
     }
   }
 
@@ -50,7 +50,7 @@ function App() {
   const content2 = {
     image: {
       alt: "Product screenshot",
-      src: "/assets/images/matches-grid.jpg",
+      src: '../../assets/match-results.jpg',
     }
   }
 
@@ -58,7 +58,7 @@ function App() {
   const content3 = {
     image: {
       alt: "Product screenshot",
-      src: "/assets/images/venue.jpg",
+      src: "../../assets/venue.jpg",
     }
   }
 
@@ -102,7 +102,7 @@ function App() {
         description={"Accedé a una red de canchas cerca de ti, consulta disponibilidad y elige el horario que mejor te convenga. Ahorra tiempo y asegura tu lugar para jugar en las mejores canchas."}
         // features={content1.features}
         image={content3.image}
-        reverse={false} 
+        reverse={true} 
       />
       <Modal showLoading={showLoading} setOpen={setOpen} open={open}/>
     </>
