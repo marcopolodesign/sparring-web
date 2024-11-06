@@ -36,6 +36,11 @@
   font-display: swap;
 }
 
+* {
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+}
+
 
 
 .main-font {
