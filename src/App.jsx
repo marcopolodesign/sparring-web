@@ -42,7 +42,7 @@ function App() {
     ],
     image: {
       alt: "Product screenshot",
-      src: "/src/assets/images/matches-grid.jpg",
+      src: "/assets/images/matches-grid.jpg",
     }
   }
 
@@ -50,7 +50,7 @@ function App() {
   const content2 = {
     image: {
       alt: "Product screenshot",
-      src: "/src/assets/images/matches-grid.jpg",
+      src: "/assets/images/matches-grid.jpg",
     }
   }
 
@@ -58,7 +58,7 @@ function App() {
   const content3 = {
     image: {
       alt: "Product screenshot",
-      src: "/src/assets/images/venue.jpg",
+      src: "/assets/images/venue.jpg",
     }
   }
 
