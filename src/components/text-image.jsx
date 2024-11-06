@@ -44,7 +44,7 @@ const TextImage = ({ title, mainHeading, description, features, image, reverse }
 
           {/* Image Section */}
           <div
-            className={`w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0 ${
+            className={`max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0 ${
               reverse ? 'order-first lg:order-last' : ''
             }`}
           >
