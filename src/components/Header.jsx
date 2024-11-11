@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from '../assets/icons/logo.svg';
 
 export default function Header({ showLoading }) {
@@ -10,6 +10,25 @@ export default function Header({ showLoading }) {
     { name: 'Pricing', href: '#' },
     { name: 'Contact', href: '#' },
   ];
+
+  const checkHashForRegister = () => {
+    if (window.location.hash === '#register') {
+      showLoading();
+    }}
+
+
+    useEffect(() => {
+      // Check the hash when the component mounts
+      checkHashForRegister();
+  
+      // Listen for hash changes
+      window.addEventListener('hashchange', checkHashForRegister);
+  
+      // Clean up the event listener on component unmount
+      return () => {
+        window.removeEventListener('hashchange', checkHashForRegister);
+      };
+    }, []);
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
