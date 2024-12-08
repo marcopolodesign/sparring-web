@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Nav from '../components/fuba/Nav'
 import Loading from '../components/Loading';
-import { getTournamentGroups } from '../api/functions'
+import { getTournamentGroups, getCurrentTournament } from '../api/functions'
 import { Header } from '../styled';
 import { useSearchParams } from 'react-router-dom';
 
@@ -13,9 +13,10 @@ import MatchCard from '../components/fuba/MatchCard';
 const Torneo = () => {
     const [searchParams] = useSearchParams();
     const tournamentId = searchParams.get('tournament_id') || 1;
+    const [tournament, setTournament] = useState(null);
     const [groups, setGroups] = useState(null);
 
-    const tournament = JSON.parse(localStorage.getItem('tournament')) || 1;
+    // const tournament = JSON.parse(localStorage.getItem('tournament')) || 1;
 
     const user = JSON.parse(localStorage.getItem('user'))
 
@@ -24,6 +25,8 @@ const Torneo = () => {
         const fetchTournaments = async () => {
           try {
             const groups = await getTournamentGroups(tournamentId);
+            const tournaments = await getCurrentTournament(tournamentId);
+            setTournament(tournaments);
             console.log(groups);
             setGroups(groups);
           } catch (error) {
@@ -44,7 +47,6 @@ const Torneo = () => {
             {/* {console.log(tournament.attributes.golden_cup, 'torneo completo')} */}
             <div className="py-12">
                 <h1 className="!text-white uppercase text-center text-5xl font-display">{tournament?.attributes.name}: Clasificación</h1>
-                <Link to="/fupa/partidos" className="!text-white text-center text-lg font-body mx-auto block" >Ver mis partidos</Link>
             </div>
             <div className="flex flex-col gap-10 w-screen pb-40">
                 {groups.map((group) => (
