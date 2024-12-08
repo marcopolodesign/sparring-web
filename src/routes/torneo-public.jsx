@@ -49,9 +49,9 @@ const Torneo = () => {
             {/* {console.log(tournament.attributes.golden_cup, 'torneo completo')} */}
             <div className="py-12 px-6 flex items-center justify-between">
                 <div>
-                    <h1 className="!text-white uppercase text text-5xl font-display">{tournament?.attributes.name}: Clasificación</h1>
+                    <h1 className="!text-white uppercase text text-5xl font-display text-center sm:text-left">{tournament?.attributes.name}: Clasificación</h1>
                     {tournament.attributes.venue && (
-                        <p className="text-white text text-2xl">{tournament.attributes.venue.data.attributes.name}</p>
+                        <p className="text-white text text-2xl text-center sm:text-left">{tournament.attributes.venue.data.attributes.name}</p>
                     )}
                 </div>
 
@@ -98,7 +98,7 @@ const Torneo = () => {
             <div className="bg-white px-10 py-5 rounded-lg flex flex-wrap items-center justify-between mx-6">
 
             {tournament.attributes.sponsors?.data?.map((sponsor) => (
-                <div className="max-w-[10%]"  key={sponsor.id}>
+                <div className="max-w-[30%] sm:max-w-[10%]"  key={sponsor.id}>
                     <img src={sponsor.attributes.url} alt={sponsor.attributes.name} />
                 </div>
             ))}
