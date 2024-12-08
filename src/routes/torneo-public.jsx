@@ -40,9 +40,21 @@ const Torneo = () => {
       }
       , []);
 
+      useEffect(() => {
+        const interval = setInterval(() => {
+            window.location.reload();
+        }, 60000); // 1 minute in milliseconds
+
+        return () => clearInterval(interval); // Cleanup interval on component unmount
+    }, []);
+
     if (!groups) {
      return <Loading />
     }
+
+
+ 
+    
 
     return (
         <div className="min-h-screen bg-blue mx-auto pb-20">
