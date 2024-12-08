@@ -79,7 +79,7 @@ const router = createBrowserRouter([
     element: <Leaderboard isLeaderBoard/>,
   }, 
   {
-    path: '/grupos', 
+    path: 'torneos/grupos', 
     element: <PublicTournament />,
   }
 
