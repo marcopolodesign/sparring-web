@@ -56,10 +56,10 @@ const MatchCard = ({ match, user }) => {
               </div>
               <div className="flex flex-col items-center text-center ">
                 <p className='break-keep line-clamp-1'>
-                  {couple.members[0].id === user.id ? 'Vos' : `${couple.members[0].firstName.charAt(0)}. ${couple.members[0].lastName}`}
+                  {couple.members[0].id === user?.id ? 'Vos' : `${couple.members[0].firstName.charAt(0)}. ${couple.members[0].lastName}`}
                 </p>
                 <p className='break-keep line-clamp-1'>
-                  {couple.members[1].id === user.id ? 'Vos' : `${couple.members[1].firstName.charAt(0)}. ${couple.members[1].lastName}`}
+                  {couple.members[1].id === user?.id ? 'Vos' : `${couple.members[1].firstName.charAt(0)}. ${couple.members[1].lastName}`}
                 </p>
               </div>
             </div>
