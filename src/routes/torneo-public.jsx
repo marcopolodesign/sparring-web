@@ -4,6 +4,8 @@ import Loading from '../components/Loading';
 import { getTournamentGroups, getCurrentTournament } from '../api/functions'
 import { Header } from '../styled';
 import { useSearchParams } from 'react-router-dom';
+import Logo from '../assets/icons/logo-v.svg'
+
 
 
 import { Link } from 'react-router-dom';
@@ -27,7 +29,7 @@ const Torneo = () => {
             const groups = await getTournamentGroups(tournamentId);
             const tournaments = await getCurrentTournament(tournamentId);
             setTournament(tournaments);
-            console.log(groups);
+            console.log(tournaments, 'torneo completo');
             setGroups(groups);
           } catch (error) {
             console.error('Error fetching groups:', error.message);
@@ -45,8 +47,28 @@ const Torneo = () => {
     return (
         <div className="min-h-screen bg-blue  mx-auto">
             {/* {console.log(tournament.attributes.golden_cup, 'torneo completo')} */}
-            <div className="py-12">
-                <h1 className="!text-white uppercase text-center text-5xl font-display">{tournament?.attributes.name}: Clasificación</h1>
+            <div className="py-12 px-6 flex items-center justify-between">
+                <div>
+                    <h1 className="!text-white uppercase text text-5xl font-display">{tournament?.attributes.name}: Clasificación</h1>
+                    {tournament.attributes.venue && (
+                        <p className="text-white text text-2xl">{tournament.attributes.venue.data.attributes.name}</p>
+                    )}
+                </div>
+
+                <div className="flex items-center gap-5">
+                    {tournament.attributes.logo && (
+                        <div className="w-36 h-36 flex items-center justify-center">
+                            <img src={tournament.attributes.logo.data.attributes.url} alt="logo" className="m-auto"/>
+                        </div>
+                    )}
+              
+
+                    <div className="w-36 h-36 flex items-center justify-center">
+                        <img src={Logo} alt="logo" className="m-auto"/>
+                    </div>
+
+                 </div>
+              
             </div>
             <div className="flex flex-col gap-10 w-screen pb-40">
                 {groups.map((group) => (
