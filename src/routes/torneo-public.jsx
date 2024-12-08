@@ -45,7 +45,7 @@ const Torneo = () => {
     }
 
     return (
-        <div className="min-h-screen bg-blue  mx-auto">
+        <div className="min-h-screen bg-blue mx-auto pb-20">
             {/* {console.log(tournament.attributes.golden_cup, 'torneo completo')} */}
             <div className="py-12 px-6 flex items-center justify-between">
                 <div>
@@ -61,7 +61,6 @@ const Torneo = () => {
                             <img src={tournament.attributes.logo.data.attributes.url} alt="logo" className="m-auto"/>
                         </div>
                     )}
-              
 
                     <div className="w-36 h-36 flex items-center justify-center">
                         <img src={Logo} alt="logo" className="m-auto"/>
@@ -94,6 +93,16 @@ const Torneo = () => {
                         </ul>
                     </div>
                 ))}
+            </div>
+
+            <div className="bg-white px-10 py-5 rounded-lg flex flex-wrap items-center justify-between mx-6">
+
+            {tournament.attributes.sponsors?.data?.map((sponsor) => (
+                <div className="max-w-[10%]"  key={sponsor.id}>
+                    <img src={sponsor.attributes.url} alt={sponsor.attributes.name} />
+                </div>
+            ))}
+
             </div>
         </div>
     )
