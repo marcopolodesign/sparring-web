@@ -78,14 +78,14 @@ export default function RegisterTournament({ setOpenRegister, openRegister }) {
 
       console.log(response);
 
-      if (formData) {
-        try {
-          const responseProfile = await uploadProfilePicture(response.user.id, formData);
-          console.log(responseProfile);
-        } catch (error) {
-          console.error('Error uploading profile picture:', error);
-        }
-      }
+      // if (formData) {
+      //   try {
+      //     const responseProfile = await uploadProfilePicture(response.user.id, formData);
+      //     console.log(responseProfile);
+      //   } catch (error) {
+      //     console.error('Error uploading profile picture:', error);
+      //   }
+      // }
 
       if (tournamentId) {
         await addToTournament(response.user.id, tournamentId);
@@ -130,7 +130,7 @@ export default function RegisterTournament({ setOpenRegister, openRegister }) {
       closeIcon={<Button type="text" onClick={onClose}>Cerrar</Button>}
     >
       <div className="container p-6">
-        <h1 className="text-2xl font-bold mb-6">Registro de Usuario</h1>
+        <h1 className="text-2xl font-bold mb-6">Registrate para el torneo</h1>
         <form onSubmit={handleSubmit}>
           {/* Email */}
           <div className="mb-4">

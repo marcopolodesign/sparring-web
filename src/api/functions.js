@@ -70,31 +70,32 @@ export const createUser = async (userDetails) => {
 };
 
 export const uploadProfilePicture = async (userId, profilePicture) => {
-    const formData = new FormData();
-    formData.append('files', {
-      uri: profilePicture,
-      name: `${userId}.jpg'`,
-      type: 'image/jpeg',
-    });
-    formData.append('ref', 'plugin::users-permissions.user'); // The model name (User)
-    formData.append('source', 'users-permissions');
-    formData.append('refId', userId);
-    formData.append('field', 'profilePicture'); // The field name in the model
+  const formData = new FormData();
   
-    try {
-      const response = await axiosInstance.post(`/upload`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error uploading profile picture:', error);
-      throw error;
-    }
-};
+  // Ensure `profilePicture` is properly structured
+  formData.append('files', {
+    uri: profilePicture.uri, // If profilePicture is an object with a uri field
+    name: `${userId}.jpg`, // Remove extra quote in filename
+    type: profilePicture.type || 'image/jpeg', // Ensure type is provided
+  });
+  formData.append('ref', 'plugin::users-permissions.user'); // The model name (User)
+  formData.append('source', 'users-permissions');
+  formData.append('refId', userId); // Reference the user ID
+  formData.append('field', 'profilePicture'); // The field name in the model
 
+  try {
+    const response = await axiosInstance.post(`/upload`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${token}`, // Ensure the token is valid
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error uploading profile picture:', error.response?.data || error.message);
+    throw error;
+  }
+};
 
 
 
@@ -464,19 +465,21 @@ export const getPlayerLevels = async () => {
 
 export const addToTournament = async (userId, tournamentId) => {
   try {
-    // Fetch the existing user data to update the tournaments field
+    // Fetch the user's existing data to ensure tournaments is initialized correctly
     const userResponse = await axiosInstance.get(`/users/${userId}`);
     const userData = userResponse.data;
 
-    // Check if the tournament is already associated with the user
-    if (userData.tournaments.some((tournament) => tournament.id === parseInt(tournamentId, 10))) {
-      return { message: 'User is already registered in this tournament.' };
+    // Initialize tournaments as an empty array if it is null or undefined
+    const tournaments = Array.isArray(userData.tournaments) ? userData.tournaments : [];
+
+    // Avoid adding duplicate tournament entries
+    if (!tournaments.some((tournament) => tournament.id === parseInt(tournamentId, 10))) {
+      tournaments.push({ id: parseInt(tournamentId, 10) });
     }
 
-    // Update the user's tournaments field
-    const updatedTournaments = [...userData.tournaments, { id: tournamentId }];
+    // Update the user's tournaments
     const response = await axiosInstance.put(`/users/${userId}`, {
-      tournaments: updatedTournaments,
+      tournaments,
     });
 
     return response.data;
