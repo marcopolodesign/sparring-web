@@ -234,7 +234,7 @@ export default function RegisterTournament({ setOpenRegister, openRegister }) {
           </div>
 
           {/* Profile Picture */}
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label className="block text-sm font-bold mb-2" htmlFor="profilePicture">Foto de Perfil</label>
             <input
               type="file"
@@ -243,7 +243,7 @@ export default function RegisterTournament({ setOpenRegister, openRegister }) {
               onChange={handleChange}
               className="w-full p-3 border rounded-md"
             />
-          </div>
+          </div> */}
 
           {/* Submit Button */}
           <div className="flex justify-center">
