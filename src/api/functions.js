@@ -5,9 +5,9 @@ import { es } from 'date-fns/locale'
 // import { useSelector, useDispatch } from 'react-redux';
 
 
-const API_BASE_URL = 'https://goldfish-app-25h3o.ondigitalocean.app/api'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 // PROD TOKEN
-const token = '04b4bf677234667eda880a51ef1858959fde491a5a007bf9f00be1060271013bcfbee19c644923e1766f9a77e6cf9d2ac6e57a559bdfec9015425bdcbf89b556b5a971f7d4a6eaf0ce0ea423660fe3793afea05bf8328eb4f3e4fb20d381e6b79e2138fcb1b9000574e72dbe873c1f0698e76a016f19451185c6a4bc43f795fc'
+const token = import.meta.env.VITE_TOKEN
 
 // const API_BASE_URL = `http://192.168.68.108:1337/api`;
 // const API_BASE_URL = `http://localhost:1337/api`;
@@ -15,16 +15,18 @@ const token = '04b4bf677234667eda880a51ef1858959fde491a5a007bf9f00be1060271013bc
 // const token ='b403069951b818fd7064c24f35bd70b46bb9457fb2d9d3d3b75a9f49e471ef3f34a13975da1f3a32a738f263bbb45e1daeecea719fa9391af198182f9b51b032a038b6444608a922cac1228aa16bb172329ab0714e35f0ba5a186314087cc9afe5d32dbd8d90ccef6676837ff3ba839bdee91e7a03df4e5d844a2a7412e3ee4c'
 
 
+console.log(import.meta.env.VITE_API_BASE_URL, 'URL functions.js')
+
 
 // console.log(API_BASE_URL, 'URL functions.js')
 
 // Create an axios instance with default headers
 const axiosInstance = axios.create({
-    baseURL: API_BASE_URL,
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-    },
+  baseURL: import.meta.env.VITE_API_BASE_URL,
+  headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${import.meta.env.VITE_TOKEN}`,
+  },
 });
 
 // Example function to fetch a user by ID
@@ -59,7 +61,7 @@ export const loginUser = async (username, password) => {
 
 export const createUser = async (userDetails) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/auth/local/register`, userDetails);
+      const response = await axiosInstance.post(`/auth/local/register`, userDetails);
       return response.data;
     } catch (error) {
       console.error('Error creating user:', error);
@@ -80,7 +82,7 @@ export const uploadProfilePicture = async (userId, profilePicture) => {
     formData.append('field', 'profilePicture'); // The field name in the model
   
     try {
-      const response = await axios.post(`${API_BASE_URL}/upload`, formData, {
+      const response = await axiosInstance.post(`/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`,
@@ -447,4 +449,39 @@ export const getFinalMatches = async (tournamentId, userId) => {
 };
 export const isEmpty = (obj) => {
   return Object.keys(obj).length === 0;
+};
+
+
+export const getPlayerLevels = async () => {
+  try {
+    const response = await axiosInstance.get('/player-levels');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching player levels:', error);
+    throw error;
+  }
+}
+
+export const addToTournament = async (userId, tournamentId) => {
+  try {
+    // Fetch the existing user data to update the tournaments field
+    const userResponse = await axiosInstance.get(`/users/${userId}`);
+    const userData = userResponse.data;
+
+    // Check if the tournament is already associated with the user
+    if (userData.tournaments.some((tournament) => tournament.id === parseInt(tournamentId, 10))) {
+      return { message: 'User is already registered in this tournament.' };
+    }
+
+    // Update the user's tournaments field
+    const updatedTournaments = [...userData.tournaments, { id: tournamentId }];
+    const response = await axiosInstance.put(`/users/${userId}`, {
+      tournaments: updatedTournaments,
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error('Error adding user to tournament:', error);
+    throw error;
+  }
 };

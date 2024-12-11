@@ -81,7 +81,8 @@ const router = createBrowserRouter([
   {
     path: 'torneos/grupos', 
     element: <PublicTournament />,
-  }
+  }, 
+  
 
 
   // {

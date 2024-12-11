@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import VideoImage from './components/video-image';
 import Modal from './components/RegisterModal';
+import RegisterTournament from './components/RegisterTournament';
 import TextImage from './components/text-image';
 import Feature from './components/Feature';
 import { initGA, logPageView } from './analytics'; // Import the Google Analytics functions
@@ -19,6 +20,14 @@ function App() {
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] =useState(true);
+
+
+  useEffect(() => {
+    if (window.location.href.includes('register-tournament')) {
+      setOpenRegister(true);
+    }
+  }, []);
+  const [openRegister, setOpenRegister] = useState(false);
 
   const showLoading = () => {
     console.log('Loading...');
@@ -130,7 +139,8 @@ function App() {
 
       <Feature icon={<SparringCoachIcon />} bgColor="veryViolet" mainHeading={'La mejor herramienta para coaches de pádel '} description={'Tu agenda completa, en tu bolsillo. Visualizá tu disponibilidad y esperá a que tus alumnos nuevos se anoten.'} image={content5.image}/>
       <Footer />
-      <Modal showLoading={showLoading} setOpen={setOpen} open={open}/>
+      {/* <Modal showLoading={showLoading} setOpen={setOpen} open={open}/> */}
+      <RegisterTournament setOpenRegister={setOpenRegister} openRegister={openRegister}/>
     </>
   );
 }
