@@ -12,6 +12,7 @@ import Leaderboard from './routes/Leaderboard'
 import CopaOro from './routes/copa-oro'
 import CopaPlata from './routes/copa-plata'
 import PublicTournament from './routes/torneo-public'
+import Ranking from './components/fuba/Ranking'
 
 import {
   createBrowserRouter,
@@ -78,6 +79,13 @@ const router = createBrowserRouter([
     path: "/leaderboard",
     element: <Leaderboard isLeaderBoard/>,
   }, 
+
+  {
+    path: 'ranking', 
+    element: <Ranking isIndividual />,
+  }, 
+  
+
   {
     path: 'torneos/grupos', 
     element: <PublicTournament />,

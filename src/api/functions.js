@@ -488,3 +488,34 @@ export const addToTournament = async (userId, tournamentId) => {
     throw error;
   }
 };
+
+
+export const getIndividualTournamentLeaderboard = async (tournamentId) => {
+  try {
+    // Fetch data from the API
+    const response = await axiosInstance.get(`/fupa/${tournamentId}/ranking`, {
+      params: {
+        populate: 'player',
+      },
+    });
+
+    console.log(response.data, 'RESPONSE DATA INDIVIDUAL LEADERBOARD');
+
+    // Process and return the leaderboard data
+    const leaderboard = response.data.map((entry) => {
+      const player = entry.player;
+      return {
+        id: player?.id || null,
+        points: entry.points || 0,
+        firstName: player?.firstName || '',
+        lastName: player?.lastName || '',
+        profilePicture: player?.profilePicture || null, // Null if no profile picture
+      };
+    });
+
+    return leaderboard;
+  } catch (error) {
+    console.error('Error fetching individual tournament leaderboard:', error);
+    throw error;
+  }
+};
