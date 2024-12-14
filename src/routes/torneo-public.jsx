@@ -61,16 +61,16 @@ const Torneo = () => {
             {/* {console.log(tournament.attributes.golden_cup, 'torneo completo')} */}
             <div className="py-12 px-6 flex flex-col sm:flex-row items-center justify-between">
                 <div>
-                    <h1 className="!text-white uppercase text text-5xl font-display text-center sm:text-left">{tournament?.attributes.name}: Clasificación</h1>
-                    {tournament.attributes.venue && (
-                        <p className="text-white text text-2xl text-center sm:text-left">{tournament.attributes.venue.data.attributes.name}</p>
+                    <h1 className="!text-white uppercase text text-5xl font-display text-center sm:text-left">{tournament?.attributes?.name}: Clasificación</h1>
+                    {tournament.attributes?.venue && (
+                        <p className="text-white text text-2xl text-center sm:text-left">{tournament.attributes?.venue.data.attributes.name}</p>
                     )}
                 </div>
 
                 <div className="flex items-center gap-5">
-                    {tournament.attributes.logo.data && (
+                    {tournament.attributes?.logo?.data && (
                         <div className="w-36 h-36 flex items-center justify-center">
-                            <img src={tournament.attributes.logo.data?.attributes?.url} alt="logo" className="m-auto"/>
+                            <img src={tournament.attributes?.logo.data?.attributes?.url} alt="logo" className="m-auto"/>
                         </div>
                     )}
 
@@ -108,12 +108,12 @@ const Torneo = () => {
             </div>
 
 
-            {tournament.attributes.sponsors?.data && (
+            {tournament.attributes?.sponsors?.data && (
                 <div className="bg-white px-10 py-5 rounded-lg flex flex-wrap items-center justify-between mx-6">
 
-                {tournament.attributes.sponsors?.data?.map((sponsor) => (
+                {tournament.attributes?.sponsors?.data?.map((sponsor) => (
                     <div className="max-w-[30%] sm:max-w-[10%]"  key={sponsor.id}>
-                        <img src={sponsor.attributes.url} alt={sponsor.attributes.name} />
+                        <img src={sponsor.attributes?.url} alt={sponsor.attributes?.name} />
                     </div>
                 ))}
 
