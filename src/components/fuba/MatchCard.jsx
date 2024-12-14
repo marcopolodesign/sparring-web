@@ -74,7 +74,7 @@ const MatchCard = ({ match, user }) => {
             <div className="flex gap-3">
               {couple.sets.map((set, index) => (
                 <div key={index} className={`flex items-center`}>
-                  <p className={`font-display text-6xl text-gray-300 ${set.gamesWon >= parseInt(minGamesWon) ? '!text-darkGreen underline' : ''}`}>{set.gamesWon}</p>
+                  <p className={`set-result font-display text-6xl text-gray-300 ${set.gamesWon >= parseInt(minGamesWon) ? '!text-darkGreen underline' : ''}`}>{set.gamesWon}</p>
                 </div>
               ))}
             </div>
