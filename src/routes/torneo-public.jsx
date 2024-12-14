@@ -198,35 +198,47 @@ const Torneo = () => {
     // }, [groups]);
 
 
-    function verticalScrollLoop() {
-        const scrollToBottom = () => {
-            window.scrollTo({
-            top: document.body.scrollHeight, // Scroll to the bottom of the page
-            behavior: "smooth", // Smooth scrolling
-            });
-        
-            setTimeout(() => {
-            scrollToTop(); // Call the scrollToTop function after 20 seconds
-            }, 20000); // Wait 20 seconds at the bottom
-        };
-        
-        const scrollToTop = () => {
-            window.scrollTo({
-            top: 0, // Scroll to the top of the page
-            behavior: "smooth", // Smooth scrolling
-            });
-        
-            setTimeout(() => {
-            scrollToBottom(); // Call the scrollToBottom function after 20 seconds
-            }, 20000); // Wait 20 seconds at the top
-        };
-        
-        // Start the loop by scrolling to the bottom
-        scrollToBottom();
-    }
-    
-    // Start the vertical scrolling loop when the page loads
-    window.onload = verticalScrollLoop;
+    useEffect(() => {
+        const isMobile = window.innerWidth <= 768; // Define mobile width threshold
+        if (!isMobile) {
+            let scrollingDown = true; // Tracks the current scroll direction
+            let intervalId; // To store the interval for scrolling
+
+            const scrollPage = () => {
+                let scrollStep = 5; // Pixels to scroll per step
+                let scrollDuration = 10000; // Total duration of the scroll in ms
+                let intervalTime = scrollDuration / (document.body.scrollHeight / scrollStep);
+
+                intervalId = setInterval(() => {
+                    if (scrollingDown) {
+                        window.scrollBy(0, scrollStep); // Scroll down by step
+                        if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+                            clearInterval(intervalId); // Stop scrolling
+                            setTimeout(() => {
+                                scrollingDown = false; // Switch direction
+                                scrollPage();
+                            }, 20000); // Pause at the bottom for 5 seconds
+                        }
+                    } else {
+                        window.scrollBy(0, -scrollStep); // Scroll up by step
+                        if (window.scrollY <= 0) {
+                            clearInterval(intervalId); // Stop scrolling
+                            setTimeout(() => {
+                                scrollingDown = true; // Switch direction
+                                scrollPage();
+                            }, 20000); // Pause at the top for 5 seconds
+                        }
+                    }
+                }, intervalTime); // Adjust speed
+            };
+
+            scrollPage(); // Start the scrolling loop
+
+            return () => {
+                clearInterval(intervalId); // Cleanup on component unmount
+            };
+        }
+    }, [groups]);
 
 
 
