@@ -48,12 +48,57 @@ const Torneo = () => {
         return () => clearInterval(interval); // Cleanup interval on component unmount
     }, []);
 
+
+    
+    useEffect(() => {
+        const ulElements = document.querySelectorAll('.group-matches-container');
+        const scrollIntervals = new Map(); // Map to store intervals for each ulElement
+      
+        ulElements.forEach((ulElement) => {
+          if (ulElement) {
+            const ulWidth = ulElement.scrollWidth;
+            const windowWidth = window.innerWidth - 100;
+      
+            if (ulWidth > windowWidth) {
+              let scrollDirection = 1; // 1 for right, -1 for left
+              let scrollAmount = 0;
+              const maxScroll = ulWidth - windowWidth;
+      
+              const startScrolling = () => {
+                const interval = setInterval(() => {
+                  scrollAmount += 1 * scrollDirection; // Slow scrolling
+                  ulElement.scrollLeft = scrollAmount;
+      
+                  if (scrollAmount >= maxScroll || scrollAmount <= 0) {
+                    clearInterval(scrollIntervals.get(ulElement));
+      
+                    // Pause for 10 seconds
+                    setTimeout(() => {
+                      scrollDirection *= -1; // Reverse direction
+                      startScrolling(); // Resume scrolling after pause
+                    }, 10000); // Pause for 10 seconds
+                  }
+                }, 30); // Adjust scrolling speed
+                scrollIntervals.set(ulElement, interval); // Store interval in Map
+              };
+      
+              startScrolling(); // Start scrolling when component mounts
+            }
+          }
+        });
+      
+        // Cleanup function to clear all intervals
+        return () => {
+          scrollIntervals.forEach((interval) => clearInterval(interval)); // Clear all intervals
+        };
+      }, []);
+
     if (!groups) {
      return <Loading />
     }
 
 
- 
+  
     
 
     return (
@@ -107,7 +152,7 @@ const Torneo = () => {
                                 null
                             }
                         </h2>
-                        <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6">
+                        <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6 group-matches-container">
                         {group.matches.map((match) => {
                                 return (
                                     <MatchCard match={match} key={match.id} user={user} />
