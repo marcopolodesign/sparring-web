@@ -88,108 +88,111 @@ const Torneo = () => {
     };
 
     
-    // useEffect(() => {
-    //     const isMobile = window.innerWidth <= 768; // Define mobile width threshold
+    useEffect(() => {
+        const isMobile = window.innerWidth <= 768; // Define mobile width threshold
 
-    //     if (!isMobile) {
-    //         const ulElements = document.querySelectorAll('.group-matches-container');
-    //         const scrollIntervals = new Map(); // Map to store intervals for each ulElement
+        if (!isMobile) {
+            const ulElements = document.querySelectorAll('.group-matches-container');
+            const scrollIntervals = new Map(); // Map to store intervals for each ulElement
 
-    //         ulElements.forEach((ulElement) => {
-    //             if (ulElement) {
-    //                 const ulWidth = ulElement.scrollWidth;
-    //                 const windowWidth = window.innerWidth - 100;
+            ulElements.forEach((ulElement) => {
+                if (ulElement) {
+                    const ulWidth = ulElement.scrollWidth;
+                    const windowWidth = window.innerWidth - 100;
 
-    //                 if (ulWidth > windowWidth) {
-    //                     let scrollDirection = 1; // 1 for right, -1 for left
-    //                     let scrollAmount = 0;
-    //                     const maxScroll = ulWidth - windowWidth;
+                    if (ulWidth > windowWidth) {
+                        let scrollDirection = 1; // 1 for right, -1 for left
+                        let scrollAmount = 0;
+                        const maxScroll = ulWidth - windowWidth;
 
-    //                     const startScrolling = () => {
-    //                         const interval = setInterval(() => {
-    //                             scrollAmount += 1 * scrollDirection; // Slow scrolling
-    //                             ulElement.scrollLeft = scrollAmount;
+                        const startScrolling = () => {
+                            const interval = setInterval(() => {
+                                scrollAmount += 1 * scrollDirection; // Slow scrolling
+                                ulElement.scrollLeft = scrollAmount;
 
-    //                             if (scrollAmount >= maxScroll || scrollAmount <= 0) {
-    //                                 clearInterval(scrollIntervals.get(ulElement));
+                                if (scrollAmount >= maxScroll || scrollAmount <= 0) {
+                                    clearInterval(scrollIntervals.get(ulElement));
 
-    //                                 // Pause for 10 seconds
-    //                                 setTimeout(() => {
-    //                                     scrollDirection *= -1; // Reverse direction
-    //                                     startScrolling(); // Resume scrolling after pause
-    //                                 }, 10000); // Pause for 10 seconds
-    //                             }
-    //                         }, 30); // Adjust scrolling speed
-    //                         scrollIntervals.set(ulElement, interval); // Store interval in Map
-    //                     };
+                                    // Pause for 10 seconds
+                                    setTimeout(() => {
+                                        scrollDirection *= -1; // Reverse direction
+                                        startScrolling(); // Resume scrolling after pause
+                                    }, 10000); // Pause for 10 seconds
+                                }
+                            }, 30); // Adjust scrolling speed
+                            scrollIntervals.set(ulElement, interval); // Store interval in Map
+                        };
 
-    //                     startScrolling(); // Start scrolling when component mounts
-    //                 }
-    //             }
-    //         });
+                        startScrolling(); // Start scrolling when component mounts
+                    }
+                }
+            });
 
-    //         hideScrollbars(); // Hide scrollbars
+            hideScrollbars(); // Hide scrollbars
 
-    //         // Cleanup function to clear all intervals
-    //         return () => {
-    //             scrollIntervals.forEach((interval) => clearInterval(interval)); // Clear all intervals
-    //         };
-    //     }
-    // }, [groups]);
-
+            // Cleanup function to clear all intervals
+            return () => {
+                scrollIntervals.forEach((interval) => clearInterval(interval)); // Clear all intervals
+            };
+        }
+    }, [groups]);
 
     useEffect(() => {
-        const groupContainers = document.querySelectorAll('.group-matches-container');
+        const isMobile = window.innerWidth <= 768; // Define mobile width threshold
+
+        if (!isMobile) {
+            const groupContainers = document.querySelectorAll('.group-matches-container');
+            
+            groupContainers.forEach(container => {
+                const matches = Array.from(container.querySelectorAll('.match'));
         
-        groupContainers.forEach(container => {
-            const matches = Array.from(container.querySelectorAll('.match'));
-    
-            // Filter matches where at least one "set-result" is greater than 1
-            const validMatches = matches.filter(match => {
-                return Array.from(match.querySelectorAll('.set-result')).some(set => {
-                    const result = parseInt(set.textContent.trim(), 10);
-                    console.log(result, 'RESULTADO');
-                    return result > 1; // Match is valid if any set-result is greater than 1
+                // Filter matches where at least one "set-result" is greater than 1
+                const validMatches = matches.filter(match => {
+                    return Array.from(match.querySelectorAll('.set-result')).some(set => {
+                        const result = parseInt(set.textContent.trim(), 10);
+                        console.log(result, 'RESULTADO');
+                        return result > 1; // Match is valid if any set-result is greater than 1
+                    });
                 });
+        
+                // Hide the entire container if no valid matches exist
+                if (validMatches.length === 0) {
+                    container.style.display = 'none'; // Hide the container
+                    return;
+                }
+        
+                let currentIndex = 0;
+        
+                // Hide all matches initially
+                validMatches.forEach(match => (match.style.display = 'none'));
+        
+                console.log(validMatches, 'valid matches');
+        
+                // Function to showcase matches one by one
+                function showcaseNextMatch() {
+                    if (validMatches.length === 0) return;
+        
+                    // Hide the current match
+                    validMatches[currentIndex].style.display = 'none';
+        
+                    // Move to the next match or loop back to the first
+                    currentIndex = (currentIndex + 1) % validMatches.length;
+        
+                    // Show the next match
+                    validMatches[currentIndex].style.display = 'block';
+        
+                    // Schedule the next transition
+                    setTimeout(showcaseNextMatch, 3000); // 3000ms = 3 seconds pause
+                }
+        
+                // Start showcasing matches
+                if (validMatches.length > 0) {
+                    validMatches[0].style.display = 'block';
+                    setTimeout(showcaseNextMatch, 3000);
+                }
             });
-    
-            // Hide the entire container if no valid matches exist
-            if (validMatches.length === 0) {
-                container.style.display = 'none'; // Hide the container
-                return;
-            }
-    
-            let currentIndex = 0;
-    
-            // Hide all matches initially
-            validMatches.forEach(match => (match.style.display = 'none'));
-    
-            console.log(validMatches, 'valid matches');
-    
-            // Function to showcase matches one by one
-            function showcaseNextMatch() {
-                if (validMatches.length === 0) return;
-    
-                // Hide the current match
-                validMatches[currentIndex].style.display = 'none';
-    
-                // Move to the next match or loop back to the first
-                currentIndex = (currentIndex + 1) % validMatches.length;
-    
-                // Show the next match
-                validMatches[currentIndex].style.display = 'block';
-    
-                // Schedule the next transition
-                setTimeout(showcaseNextMatch, 3000); // 3000ms = 3 seconds pause
-            }
-    
-            // Start showcasing matches
-            if (validMatches.length > 0) {
-                validMatches[0].style.display = 'block';
-                setTimeout(showcaseNextMatch, 3000);
-            }
-        });
-    }, [groups]);    
+        }
+    }, [groups]);
 
     if (!groups) {
      return <Loading />
