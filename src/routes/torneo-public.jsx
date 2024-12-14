@@ -63,7 +63,7 @@ const Torneo = () => {
                 <div>
                     <h1 className="!text-white uppercase text text-5xl font-display text-center sm:text-left">{tournament?.attributes?.name}: Clasificación</h1>
                     {tournament.attributes?.venue && (
-                        <p className="text-white text text-2xl text-center sm:text-left">{tournament.attributes?.venue.data.attributes.name}</p>
+                        <p className="text-white text text-2xl text-center sm:text-left">{tournament.attributes?.venue?.data?.attributes?.name}</p>
                     )}
                 </div>
 
