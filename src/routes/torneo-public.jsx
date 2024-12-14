@@ -277,7 +277,7 @@ const Torneo = () => {
                  </div>
               
             </div>
-            <div className="flex flex-col gap-5 w-screen pb-40">
+            <div className="flex flex-col gap-5 w-screen">
                 {groups.map((group) => (
                     <div key={group.id} className="group-matches-container">
                         <h2 className="text-xl text-body text-white pl-6">{group.groupName}
