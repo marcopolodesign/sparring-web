@@ -74,6 +74,20 @@ const Torneo = () => {
                         </div>
                     )}
 
+
+                    {tournament.attributes?.main_sponsors?.data?.length > 0 && (
+                        <div className="flex flex-wrap gap-5 items-center justify-center">
+                            {tournament.attributes?.main_sponsors?.data?.map((sponsor) => (
+                                <div className="w-36 h-36 flex items-center justify-center" key={sponsor.id}>
+                                    <img 
+                                        src={sponsor.attributes?.url} 
+                                        alt={sponsor.attributes?.name || 'Sponsor'} 
+                                        className="m-auto object-contain w-full h-full" 
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    )}
                     <div className="w-36 h-36 flex items-center justify-center">
                         <img src={Logo} alt="logo" className="m-auto"/>
                     </div>
