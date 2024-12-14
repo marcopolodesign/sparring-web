@@ -5,6 +5,7 @@ import { getTournamentGroups, getCurrentTournament } from '../api/functions'
 import { Header } from '../styled';
 import { useSearchParams } from 'react-router-dom';
 import Logo from '../assets/icons/logo-v.svg'
+import QR from '../assets/icons/qr.svg'
 
 
 
@@ -53,7 +54,7 @@ const Torneo = () => {
 
 
 
-    const [isSponsorVisible, setIsSponsorVisible] = useState(false);
+    const [isSponsorVisible, setIsSponsorVisible] = useState(true);
 
     useEffect(() => {
         // Function to toggle the visibility of the sponsor div
@@ -62,7 +63,7 @@ const Torneo = () => {
 
             // Hide the sponsor div after it has been shown for 10 seconds
             setTimeout(() => {
-                setIsSponsorVisible(false);
+                setIsSponsorVisible(true);
             }, 10000); // 10 seconds
         };
 
@@ -263,13 +264,25 @@ const Torneo = () => {
 
 
             {isSponsorVisible && tournament.attributes?.sponsors?.data && (
-                <div className="bg-white px-10 py-5 flex flex-wrap items-center justify-between fixed top-0 left-0 w-screen h-screen">
+                <div className="bg-white px-10 py-5 flex flex-col items-center justify-center fixed top-0 left-0 w-screen h-screen">
 
-                {tournament.attributes?.sponsors?.data?.map((sponsor) => (
-                    <div className="max-w-[30%] sm:max-w-[10%]"  key={sponsor.id}>
-                        <img className="h-[40px] w-auto" src={sponsor.attributes?.url} alt={sponsor.attributes?.name} />
+                    <div className="flex flew-wrap items-center justify-between">
+                    {tournament.attributes?.sponsors?.data?.map((sponsor) => (
+                        <div className="max-w-[30%] sm:max-w-[10%]"  key={sponsor.id}>
+                            <img className="h-[40px] w-auto" src={sponsor.attributes?.url} alt={sponsor.attributes?.name} />
+                        </div>
+                    ))}
                     </div>
-                ))}
+
+                    <div className="flex flex-col items-center gap-2 mt-5">
+                        <div className="w-36 h-36 flex items-center justify-center">
+                            <img src={QR} alt="logo" className="m-auto"/>
+                        </div>
+
+                        <h2 className="thunder font-display uppercase text-3xl">Seguí el torneo desde tu celular</h2>
+                    </div>
+
+               
 
                 </div>
             )}
