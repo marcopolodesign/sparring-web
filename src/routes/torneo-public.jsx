@@ -54,7 +54,7 @@ const Torneo = () => {
 
 
 
-    const [isSponsorVisible, setIsSponsorVisible] = useState(true);
+    const [isSponsorVisible, setIsSponsorVisible] = useState(false);
 
     useEffect(() => {
         // Function to toggle the visibility of the sponsor div
@@ -63,8 +63,8 @@ const Torneo = () => {
 
             // Hide the sponsor div after it has been shown for 10 seconds
             setTimeout(() => {
-                setIsSponsorVisible(true);
-            }, 10000); // 10 seconds
+                setIsSponsorVisible(false);
+            }, 60000); // 1 minute
         };
 
         // Set interval to showcase the div every 5 minutes
@@ -266,7 +266,7 @@ const Torneo = () => {
             {isSponsorVisible && tournament.attributes?.sponsors?.data && (
                 <div className="bg-white px-10 py-5 flex flex-col items-center justify-center fixed top-0 left-0 w-screen h-screen">
 
-                    <div className="flex flew-wrap items-center justify-between">
+                    <div className="flex flex-wrap items-center justify-between w-screen">
                     {tournament.attributes?.sponsors?.data?.map((sponsor) => (
                         <div className="max-w-[30%] sm:max-w-[10%]"  key={sponsor.id}>
                             <img className="h-[40px] w-auto" src={sponsor.attributes?.url} alt={sponsor.attributes?.name} />
