@@ -138,64 +138,64 @@ const Torneo = () => {
         }
     }, [groups]);
 
-    useEffect(() => {
-        const isMobile = window.innerWidth <= 768; // Define mobile width threshold
+    // useEffect(() => {
+    //     const isMobile = window.innerWidth <= 768; // Define mobile width threshold
     
-        if (!isMobile) {
-            const groupContainers = document.querySelectorAll('.group-matches-container');
+    //     if (!isMobile) {
+    //         const groupContainers = document.querySelectorAll('.group-matches-container');
     
-            groupContainers.forEach((container, index) => {
-                const matches = Array.from(container.querySelectorAll('.match'));
+    //         groupContainers.forEach((container, index) => {
+    //             const matches = Array.from(container.querySelectorAll('.match'));
     
-                // Filter matches where at least one "set-result" is greater than 1
-                const validMatches = matches.filter(match => {
-                    return Array.from(match.querySelectorAll('.set-result')).some(set => {
-                        const result = parseInt(set.textContent.trim(), 10);
-                        console.log(result, 'RESULTADO');
-                        return result > 1; // Match is valid if any set-result is greater than 1
-                    });
-                });
+    //             // Filter matches where at least one "set-result" is greater than 1
+    //             const validMatches = matches.filter(match => {
+    //                 return Array.from(match.querySelectorAll('.set-result')).some(set => {
+    //                     const result = parseInt(set.textContent.trim(), 10);
+    //                     console.log(result, 'RESULTADO');
+    //                     return result > 1; // Match is valid if any set-result is greater than 1
+    //                 });
+    //             });
     
-                // Always display the first container, even if no valid matches exist
-                if (index === 0) {
-                    container.style.display = 'block';
-                } else if (validMatches.length === 0) {
-                    container.style.display = 'none'; // Hide the container
-                    return;
-                }
+    //             // Always display the first container, even if no valid matches exist
+    //             if (index === 0) {
+    //                 container.style.display = 'block';
+    //             } else if (validMatches.length === 0) {
+    //                 container.style.display = 'none'; // Hide the container
+    //                 return;
+    //             }
     
-                let currentIndex = 0;
+    //             let currentIndex = 0;
     
-                // Hide all matches initially
-                validMatches.forEach(match => (match.style.display = 'none'));
+    //             // Hide all matches initially
+    //             validMatches.forEach(match => (match.style.display = 'none'));
     
-                console.log(validMatches, 'valid matches');
+    //             console.log(validMatches, 'valid matches');
     
-                // Function to showcase matches one by one
-                function showcaseNextMatch() {
-                    if (validMatches.length === 0) return;
+    //             // Function to showcase matches one by one
+    //             function showcaseNextMatch() {
+    //                 if (validMatches.length === 0) return;
     
-                    // Hide the current match
-                    validMatches[currentIndex].style.display = 'none';
+    //                 // Hide the current match
+    //                 validMatches[currentIndex].style.display = 'none';
     
-                    // Move to the next match or loop back to the first
-                    currentIndex = (currentIndex + 1) % validMatches.length;
+    //                 // Move to the next match or loop back to the first
+    //                 currentIndex = (currentIndex + 1) % validMatches.length;
     
-                    // Show the next match
-                    validMatches[currentIndex].style.display = 'block';
+    //                 // Show the next match
+    //                 validMatches[currentIndex].style.display = 'block';
     
-                    // Schedule the next transition
-                    setTimeout(showcaseNextMatch, 3000); // 3000ms = 3 seconds pause
-                }
+    //                 // Schedule the next transition
+    //                 setTimeout(showcaseNextMatch, 3000); // 3000ms = 3 seconds pause
+    //             }
     
-                // Start showcasing matches
-                if (validMatches.length > 0) {
-                    validMatches[0].style.display = 'block';
-                    setTimeout(showcaseNextMatch, 3000);
-                }
-            });
-        }
-    }, [groups]);
+    //             // Start showcasing matches
+    //             if (validMatches.length > 0) {
+    //                 validMatches[0].style.display = 'block';
+    //                 setTimeout(showcaseNextMatch, 3000);
+    //             }
+    //         });
+    //     }
+    // }, [groups]);
 
     if (!groups) {
      return <Loading />
