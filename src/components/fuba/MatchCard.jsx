@@ -1,6 +1,13 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom'; // Import useParams
 
 const MatchCard = ({ match, user }) => {
+
+  const searchParams = new URLSearchParams(location.search); // Parse query parameters
+  const minGamesWon = searchParams.get('minGamesWon'); // Extract minGamesWon from query parameters
+
+
+
   useEffect(() => {
     const matches = document.querySelectorAll('.match'); // Select all match divs
 
@@ -67,7 +74,7 @@ const MatchCard = ({ match, user }) => {
             <div className="flex gap-3">
               {couple.sets.map((set, index) => (
                 <div key={index} className={`flex items-center`}>
-                  <p className={`font-display text-6xl text-gray-300 ${set.gamesWon >= 6 ? '!text-darkGreen underline' : ''}`}>{set.gamesWon}</p>
+                  <p className={`font-display text-6xl text-gray-300 ${set.gamesWon >= parseInt(minGamesWon) ? '!text-darkGreen underline' : ''}`}>{set.gamesWon}</p>
                 </div>
               ))}
             </div>

@@ -37,70 +37,93 @@ const Torneo = () => {
         };
     
         fetchTournaments();
-      }
-      , []);
-
-      useEffect(() => {
-        const interval = setInterval(() => {
-            window.location.reload();
-        }, 60000); // 1 minute in milliseconds
+        const interval = setInterval(fetchTournaments, 60000); // 1 minute in milliseconds
 
         return () => clearInterval(interval); // Cleanup interval on component unmount
-    }, []);
+      }
+      , [tournamentId]);
 
+    //   useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         window.location.reload();
+    //     }, 60000); // 1 minute in milliseconds
+
+    //     return () => clearInterval(interval); // Cleanup interval on component unmount
+    // }, []);
+
+
+
+      
+    
+    const hideScrollbars = () => {
+        const style = document.createElement('style');
+        style.innerHTML = `
+            ::-webkit-scrollbar {
+                display: none;
+            }
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        `;
+        document.head.appendChild(style);
+    };
 
     
     useEffect(() => {
-        const ulElements = document.querySelectorAll('.group-matches-container');
-        const scrollIntervals = new Map(); // Map to store intervals for each ulElement
-      
-        ulElements.forEach((ulElement) => {
-          if (ulElement) {
-            const ulWidth = ulElement.scrollWidth;
-            const windowWidth = window.innerWidth - 100;
-      
-            if (ulWidth > windowWidth) {
-              let scrollDirection = 1; // 1 for right, -1 for left
-              let scrollAmount = 0;
-              const maxScroll = ulWidth - windowWidth;
-      
-              const startScrolling = () => {
-                const interval = setInterval(() => {
-                  scrollAmount += 1 * scrollDirection; // Slow scrolling
-                  ulElement.scrollLeft = scrollAmount;
-      
-                  if (scrollAmount >= maxScroll || scrollAmount <= 0) {
-                    clearInterval(scrollIntervals.get(ulElement));
-      
-                    // Pause for 10 seconds
-                    setTimeout(() => {
-                      scrollDirection *= -1; // Reverse direction
-                      startScrolling(); // Resume scrolling after pause
-                    }, 10000); // Pause for 10 seconds
-                  }
-                }, 30); // Adjust scrolling speed
-                scrollIntervals.set(ulElement, interval); // Store interval in Map
-              };
-      
-              startScrolling(); // Start scrolling when component mounts
-            }
-          }
-        });
-      
-        // Cleanup function to clear all intervals
-        return () => {
-          scrollIntervals.forEach((interval) => clearInterval(interval)); // Clear all intervals
-        };
-      }, []);
+        const isMobile = window.innerWidth <= 768; // Define mobile width threshold
+
+        if (!isMobile) {
+            const ulElements = document.querySelectorAll('.group-matches-container');
+            const scrollIntervals = new Map(); // Map to store intervals for each ulElement
+
+            ulElements.forEach((ulElement) => {
+                if (ulElement) {
+                    const ulWidth = ulElement.scrollWidth;
+                    const windowWidth = window.innerWidth - 100;
+
+                    if (ulWidth > windowWidth) {
+                        let scrollDirection = 1; // 1 for right, -1 for left
+                        let scrollAmount = 0;
+                        const maxScroll = ulWidth - windowWidth;
+
+                        const startScrolling = () => {
+                            const interval = setInterval(() => {
+                                scrollAmount += 1 * scrollDirection; // Slow scrolling
+                                ulElement.scrollLeft = scrollAmount;
+
+                                if (scrollAmount >= maxScroll || scrollAmount <= 0) {
+                                    clearInterval(scrollIntervals.get(ulElement));
+
+                                    // Pause for 10 seconds
+                                    setTimeout(() => {
+                                        scrollDirection *= -1; // Reverse direction
+                                        startScrolling(); // Resume scrolling after pause
+                                    }, 10000); // Pause for 10 seconds
+                                }
+                            }, 30); // Adjust scrolling speed
+                            scrollIntervals.set(ulElement, interval); // Store interval in Map
+                        };
+
+                        startScrolling(); // Start scrolling when component mounts
+                    }
+                }
+            });
+
+            hideScrollbars(); // Hide scrollbars
+
+            // Cleanup function to clear all intervals
+            return () => {
+                scrollIntervals.forEach((interval) => clearInterval(interval)); // Clear all intervals
+            };
+        }
+    }, [groups]);
 
     if (!groups) {
      return <Loading />
     }
 
 
-  
-    
 
+ 
     return (
         <div className="min-h-screen bg-blue mx-auto pb-20">
             {/* {console.log(tournament.attributes.golden_cup, 'torneo completo')} */}
