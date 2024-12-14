@@ -64,7 +64,7 @@ const Torneo = () => {
             // Hide the sponsor div after it has been shown for 10 seconds
             setTimeout(() => {
                 setIsSponsorVisible(false);
-            }, 60000); // 1 minute
+            }, 120000); // 1 minute
         };
 
         // Set interval to showcase the div every 5 minutes
@@ -196,6 +196,40 @@ const Torneo = () => {
     //         });
     //     }
     // }, [groups]);
+
+
+    function verticalScrollLoop() {
+        const scrollToBottom = () => {
+            window.scrollTo({
+            top: document.body.scrollHeight, // Scroll to the bottom of the page
+            behavior: "smooth", // Smooth scrolling
+            });
+        
+            setTimeout(() => {
+            scrollToTop(); // Call the scrollToTop function after 20 seconds
+            }, 20000); // Wait 20 seconds at the bottom
+        };
+        
+        const scrollToTop = () => {
+            window.scrollTo({
+            top: 0, // Scroll to the top of the page
+            behavior: "smooth", // Smooth scrolling
+            });
+        
+            setTimeout(() => {
+            scrollToBottom(); // Call the scrollToBottom function after 20 seconds
+            }, 20000); // Wait 20 seconds at the top
+        };
+        
+        // Start the loop by scrolling to the bottom
+        scrollToBottom();
+    }
+    
+    // Start the vertical scrolling loop when the page loads
+    window.onload = verticalScrollLoop;
+
+
+
 
     if (!groups) {
      return <Loading />
