@@ -166,14 +166,7 @@ const Torneo = () => {
             <div className="flex flex-col gap-10 w-screen pb-40">
                 {groups.map((group) => (
                     <div key={group.id}>
-                        <h2 className="text-xl text-body text-white pl-6">{group.groupName} - Horario: 
-                        {
-                                group.groupName === 'Zona A' ? ' 14:00hs' :
-                                group.groupName === 'Zona B' ? ' 15:30hs' :
-                                group.groupName === 'Zona C' ? ' 17:00hs' : 
-                                group.groupName === 'Zona D' ? ' 18:30hs' : 
-                                null
-                            }
+                        <h2 className="text-xl text-body text-white pl-6">{group.groupName}
                         </h2>
                         <ul className="flex w-full gap-8 overflow-scroll pl-6 last:pr-6 group-matches-container">
                         {group.matches.map((match) => {
@@ -195,7 +188,7 @@ const Torneo = () => {
 
                 {tournament.attributes?.sponsors?.data?.map((sponsor) => (
                     <div className="max-w-[30%] sm:max-w-[10%]"  key={sponsor.id}>
-                        <img src={sponsor.attributes?.url} alt={sponsor.attributes?.name} />
+                        <img className="h-[40px] w-auto" src={sponsor.attributes?.url} alt={sponsor.attributes?.name} />
                     </div>
                 ))}
 
