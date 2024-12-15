@@ -161,15 +161,15 @@ const GoldenCup = () => {
           <div className="py-2 px-6 flex flex-col sm:flex-row items-center justify-between">
                 <div>
                     <h1 className="!text-white uppercase text text-5xl font-display text-center sm:text-left">{tournament?.attributes?.name}: Clasificación</h1>
-                    {tournament.attributes?.venue && (
-                        <p className="text-white text text-2xl text-center sm:text-left">{tournament.attributes?.venue?.data?.attributes?.name}</p>
+                    {tournament?.attributes?.venue && (
+                        <p className="text-white text text-2xl text-center sm:text-left">{tournament?.attributes?.venue?.data?.attributes?.name}</p>
                     )}
                 </div>
 
                 <div className="flex items-center gap-5">
-                    {tournament.attributes?.logo?.data && (
+                    {tournament?.attributes?.logo?.data && (
                         <div className="w-36 h-36 flex items-center justify-center">
-                            <img src={tournament.attributes?.logo.data?.attributes?.url} alt="logo" className="m-auto"/>
+                            <img src={tournament?.attributes?.logo?.data?.attributes?.url} alt="logo" className="m-auto"/>
                         </div>
                     )}
 
