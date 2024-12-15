@@ -44,23 +44,31 @@ const MatchCard = ({ match, user, gamesToWin }) => {
           <div className="flex items-center">
             <div className="min-w-[110px] mr-12">
               <div className="flex items-center justify-center">
-                <div
-                  className="w-10 h-10 bg-lightGreen rounded-full flex items-center justify-center border-2 border-white translate-x-1 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${couple.members[0].profilePicture || ''})` }}
-                ></div>
+              <div
+                className="w-10 h-10 bg-lightGreen rounded-full flex items-center justify-center border-2 border-white translate-x-1 bg-cover bg-center"
+                style={{ backgroundImage: `url(${couple?.members?.[0]?.profilePicture || ''})` }}
+              ></div>
 
-                <div
-                  className="w-10 h-10 bg-lightGreen rounded-full flex items-center justify-center border-2 border-white -translate-x-1 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${couple.members[1].profilePicture || ''})` }}
-                ></div>
+              <div
+                className="w-10 h-10 bg-lightGreen rounded-full flex items-center justify-center border-2 border-white -translate-x-1 bg-cover bg-center"
+                style={{ backgroundImage: `url(${couple?.members?.[1]?.profilePicture || ''})` }}
+              ></div>
               </div>
               <div className="flex flex-col items-center text-center ">
-                <p className='break-keep line-clamp-1'>
-                  {`${couple.members[0].firstName.charAt(0)}. ${couple.members[0].lastName}`}
-                </p>
-                <p className='break-keep line-clamp-1'>
-                  {`${couple.members[1].firstName.charAt(0)}. ${couple.members[1].lastName}`}
-                </p>
+              <p className='break-keep line-clamp-1'>
+                    {couple?.members?.[0]?.id === user?.id
+                      ? 'Vos'
+                      : (couple?.members?.[0]?.firstName && couple?.members?.[0]?.lastName
+                          ? `${couple.members[0].firstName.charAt(0)}. ${couple.members[0].lastName}`
+                          : '')}
+                  </p>
+                  <p className='break-keep line-clamp-1'>
+                    {couple?.members?.[1]?.id === user?.id
+                      ? 'Vos'
+                      : (couple?.members?.[1]?.firstName && couple?.members?.[1]?.lastName
+                          ? `${couple.members[1].firstName.charAt(0)}. ${couple.members[1].lastName}`
+                          : '')}
+                  </p>
               </div>
             </div>
 
