@@ -421,7 +421,7 @@ export const addMemberToMatch = async (matchId, userId) => {
 export const getSixteenMatches = async (tournamentId, userId) => {
   try {
     const response = await axiosInstance.get(`/fupa/${tournamentId}/sixteen`);
-    console.log(response.data, 'QUARTERS')
+    console.log(response.data, 'Sixteen')
     return response.data;
   } catch (error) {
     console.error('Error fetching quarterfinal matches:', error.message);

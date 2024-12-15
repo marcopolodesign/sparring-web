@@ -39,7 +39,7 @@ const GoldenCup = () => {
 
         const fetchSixteenfinals = async () => {
             try {
-                const data = await getQuarterfinalMatches(tournamentId); // Fetch quarterfinal matches
+                const data = await getSixteenMatches(tournamentId); // Fetch quarterfinal matches
                 console.log(data, 'sixteen')
                 setSixteen(data); // Save the quarterfinal matches in the state
             } catch (error) {
