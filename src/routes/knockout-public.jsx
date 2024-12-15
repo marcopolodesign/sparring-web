@@ -41,6 +41,7 @@ const GoldenCup = () => {
                 // Fetch round of sixteen matches
                 const sixteenMatches = await getSixteenMatches(tournamentId);
                 setSixteen(sixteenMatches);
+                console.log(sixteenMatches, '16');
 
                 // Fetch quarterfinal matches
                 const quarterfinalMatches = await getQuarterfinalMatches(tournamentId);

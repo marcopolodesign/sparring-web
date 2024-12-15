@@ -550,8 +550,10 @@ export const getSixteenMatches = async (tournamentId) => {
       },
     }, { encode: false });
 
+
+
     const response = await axiosInstance.get(`/tournaments/${tournamentId}?${query}`);
-    return response.data?.golden_cup?.sixteen || [];
+    return response.data?.data?.attributes?.golden_cup?.sixteen || [];
   } catch (error) {
     console.error('Error fetching sixteen matches:', error.message);
     throw error;
@@ -560,7 +562,7 @@ export const getSixteenMatches = async (tournamentId) => {
 
 export const getQuarterfinalMatches = async (tournamentId) => {
   try {
-    // Use qs to build the query for populating the quarterfinal matches
+    // Use qs to build the query for populating the sixteen matches
     const query = qs.stringify({
       populate: {
         golden_cup: {
@@ -586,13 +588,17 @@ export const getQuarterfinalMatches = async (tournamentId) => {
       },
     }, { encode: false });
 
+
+
     const response = await axiosInstance.get(`/tournaments/${tournamentId}?${query}`);
-    return response.data?.golden_cup?.quarterfinals || [];
+    return response.data?.data?.attributes?.golden_cup?.quarterfinals || [];
   } catch (error) {
-    console.error('Error fetching quarterfinal matches:', error.message);
+    console.error('Error fetching sixteen matches:', error.message);
     throw error;
   }
 };
+
+
 
 export const getSemifinalMatches = async (tournamentId) => {
   try {
@@ -622,8 +628,9 @@ export const getSemifinalMatches = async (tournamentId) => {
       },
     }, { encode: false });
 
+    console.log(`/tournaments/${tournamentId}?${query}`, 'QUERY SEMIFINALS')
     const response = await axiosInstance.get(`/tournaments/${tournamentId}?${query}`);
-    return response.data?.golden_cup?.semifinals || [];
+    return response.data?.data?.attributes?.golden_cup?.semifinals || [];
   } catch (error) {
     console.error('Error fetching semifinal matches:', error.message);
     throw error;
@@ -659,7 +666,7 @@ export const getFinalMatches = async (tournamentId) => {
     }, { encode: false });
 
     const response = await axiosInstance.get(`/tournaments/${tournamentId}?${query}`);
-    return response.data?.golden_cup?.final || [];
+    return response.data?.data?.attributes?.golden_cup?.final || [];
   } catch (error) {
     console.error('Error fetching final matches:', error.message);
     throw error;
