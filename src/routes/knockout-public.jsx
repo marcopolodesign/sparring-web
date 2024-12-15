@@ -87,6 +87,71 @@ const GoldenCup = () => {
     fetchFinal();
 
     }, []);
+
+
+    const hideScrollbars = () => {
+        const style = document.createElement('style');
+        style.innerHTML = `
+            ::-webkit-scrollbar {
+                display: none;
+            }
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        `;
+        document.head.appendChild(style);
+    };
+
+    
+    useEffect(() => {
+        const isMobile = window.innerWidth <= 768; // Define mobile width threshold
+
+        if (!isMobile) {
+            const ulElements = document.querySelectorAll('.group-matches-container');
+            const scrollIntervals = new Map(); // Map to store intervals for each ulElement
+
+            ulElements.forEach((ulElement) => {
+                if (ulElement) {
+                    const ulWidth = ulElement.scrollWidth;
+                    const windowWidth = window.innerWidth - 100;
+
+                    if (ulWidth > windowWidth) {
+                        let scrollDirection = 1; // 1 for right, -1 for left
+                        let scrollAmount = 0;
+                        const maxScroll = ulWidth - windowWidth;
+
+                        const startScrolling = () => {
+                            const interval = setInterval(() => {
+                                scrollAmount += 1 * scrollDirection; // Slow scrolling
+                                ulElement.scrollLeft = scrollAmount;
+
+                                if (scrollAmount >= maxScroll || scrollAmount <= 0) {
+                                    clearInterval(scrollIntervals.get(ulElement));
+
+                                    // Pause for 10 seconds
+                                    setTimeout(() => {
+                                        scrollDirection *= -1; // Reverse direction
+                                        startScrolling(); // Resume scrolling after pause
+                                    }, 10000); // Pause for 10 seconds
+                                }
+                            }, 30); // Adjust scrolling speed
+                            scrollIntervals.set(ulElement, interval); // Store interval in Map
+                        };
+
+                        startScrolling(); // Start scrolling when component mounts
+                    }
+                }
+            });
+
+            hideScrollbars(); // Hide scrollbars
+
+            // Cleanup function to clear all intervals
+            return () => {
+                scrollIntervals.forEach((interval) => clearInterval(interval)); // Clear all intervals
+            };
+        }
+    }, [sixteen, quarterfinals, semifinals, final]); // Run effect when matches data is available
+
+
     if (!sixteen || !quarterfinals || !semifinals || !final) {
         return <Loading />;
     }
@@ -131,7 +196,7 @@ const GoldenCup = () => {
             </div>
             {/* Round of Sixteen */}
             <div className="flex flex-col gap-10 w-screen pb-10">
-                <h2 className="text-xl text-body text-white text-center">Round of Sixteen</h2>
+                <h2 className="text-xl text-body text-white text-center">Octavos de Final</h2>
                 {sixteen.goldenCupMatches?.length > 0 && (
                     <ul className="flex w-full gap-8 overflow-scroll justify-around">
                         {sixteen.goldenCupMatches?.map((match) => (
@@ -143,7 +208,7 @@ const GoldenCup = () => {
 
             {/* Quarterfinals */}
             <div className="flex flex-col gap-10 w-screen pb-10">
-                <h2 className="text-xl text-body text-white text-center">Quarterfinals</h2>
+                <h2 className="text-xl text-body text-white text-center">Cuartos</h2>
                 {quarterfinals.goldenCupMatches?.length > 0 && (
                     <ul className="flex w-full gap-8 overflow-scroll justify-around">
                         {quarterfinals.goldenCupMatches?.map((match) => (
@@ -155,7 +220,7 @@ const GoldenCup = () => {
 
             {/* Semifinals */}
             <div className="flex flex-col gap-10 w-screen pb-10">
-                <h2 className="text-xl text-body text-white text-center">Semifinals</h2>
+                <h2 className="text-xl text-body text-white text-center">Semi Finales</h2>
                 {semifinals.goldenCupMatches?.length > 0 && (
                     <ul className="flex w-full gap-8 overflow-scroll justify-around">
                         {semifinals.goldenCupMatches?.map((match) => (
