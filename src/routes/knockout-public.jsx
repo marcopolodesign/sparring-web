@@ -5,14 +5,17 @@ import { getSixteenMatches, getQuarterfinalMatches, getSemifinalMatches, getFina
 import MatchCardKnockout from '../components/fuba/MatchCardKnockout';
 import Fupa from '../assets/icons/fupa.svg';
 import Logo from '../assets/icons/logo.svg';
+import { useSearchParams } from 'react-router-dom';
 
 const GoldenCup = () => {
-    const { tournamentId } = useParams(); // Get tournamentId from the URL
+    const [searchParams] = useSearchParams();
+    const tournamentId = searchParams.get('tournament_id') || 1;   
     const [sixteen, setSixteen] = useState(null);
     const [quarterfinals, setQuarterfinals] = useState(null);
     const [semifinals, setSemifinals] = useState(null);
     const [final, setFinal] = useState(null);
     const [tournament, setTournament] = useState(null);
+
 
     useEffect(() => {
         const fetchTournaments = async () => {
