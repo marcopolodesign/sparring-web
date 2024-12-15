@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom'; // Import useParams
+
 
 const MatchCard = ({ match, user, gamesToWin }) => {
+  const searchParams = new URLSearchParams(location.search); // Parse query parameters
+  const minGamesWon = searchParams.get('minGamesWon'); // Extract minGamesWon from query parameters
+
   useEffect(() => {
+   
     const matches = document.querySelectorAll('.match'); // Select all match divs
 
     matches.forEach(match => {
@@ -56,16 +62,20 @@ const MatchCard = ({ match, user, gamesToWin }) => {
               </div>
               <div className="flex flex-col items-center text-center ">
               <p className='break-keep line-clamp-1'>
-                    {couple?.members?.[0]?.id === user?.id
-                      ? 'Vos'
-                      : (couple?.members?.[0]?.firstName && couple?.members?.[0]?.lastName
+                    {
+                    // couple?.members?.[0]?.id === user?.id
+                    //   ? 'Vos'
+                    //   : 
+                      (couple?.members?.[0]?.firstName && couple?.members?.[0]?.lastName
                           ? `${couple.members[0].firstName.charAt(0)}. ${couple.members[0].lastName}`
                           : '')}
                   </p>
                   <p className='break-keep line-clamp-1'>
-                    {couple?.members?.[1]?.id === user?.id
-                      ? 'Vos'
-                      : (couple?.members?.[1]?.firstName && couple?.members?.[1]?.lastName
+                    {
+                    // couple?.members?.[1]?.id === user?.id
+                    //   ? 'Vos'
+                    //   :
+                       (couple?.members?.[1]?.firstName && couple?.members?.[1]?.lastName
                           ? `${couple.members[1].firstName.charAt(0)}. ${couple.members[1].lastName}`
                           : '')}
                   </p>
@@ -75,7 +85,7 @@ const MatchCard = ({ match, user, gamesToWin }) => {
             <div className="flex gap-3">
               {couple.sets.map((set, index) => (
                 <div key={index} className={`flex items-center`}>
-                  <p className={`font-display text-6xl text-gray-300 ${set.gamesWon >= gamesToWin ? '!text-darkGreen underline' : ''}`}>{set.gamesWon}</p>
+                  <p className={`set-result font-display text-6xl text-gray-300 ${set.gamesWon >= parseInt(minGamesWon) ? '!text-darkGreen underline' : ''}`}>{set.gamesWon}</p>
                 </div>
               ))}
             </div>
