@@ -12,13 +12,8 @@
       "permanent": true
     }, 
     {
-      "source": "/torneos/grupos",
-      "has": [
-        { "type": "query", "key": "tournament_id", "value": "5" },
-        { "type": "query", "key": "minGamesWon", "value": "" },
-        { "type": "query", "key": "utm_source", "value": "qr" }
-      ],
-      "destination": "/torneos/grupos?tournament_id=5&minGamesWon=6&utm_souce=qr",
+      "source": "/torneos/grupos?tournament_id=5&minGamesWon=1&utm_source=qr",
+      "destination": "/torneos/grupos?tournament_id=5&minGamesWon=6&utm_source=qr",
       "permanent": true
     }
   ]
