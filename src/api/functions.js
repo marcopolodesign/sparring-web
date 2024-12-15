@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { format, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale'
+import qs from 'qs';
 
 // import { useSelector, useDispatch } from 'react-redux';
 
@@ -523,40 +524,144 @@ export const getIndividualTournamentLeaderboard = async (tournamentId) => {
 
 export const getSixteenMatches = async (tournamentId) => {
   try {
-      const response = await axiosInstance.get(`/tournaments/${tournamentId}/matches/sixteen`);
-      return response.data;
+    // Use qs to build the query for populating the sixteen matches
+    const query = qs.stringify({
+      populate: {
+        golden_cup: {
+          populate: {
+            sixteen: {
+              populate: {
+                couples: {
+                  populate: {
+                    members: {
+                      populate: {
+                        profilePicture: {
+                          populate: 'formats',
+                        },
+                      },
+                      fields: ['id', 'firstName', 'lastName'],
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }, { encode: false });
+
+    const response = await axiosInstance.get(`/tournaments/${tournamentId}?${query}`);
+    return response.data?.golden_cup?.sixteen || [];
   } catch (error) {
-      console.error('Error fetching sixteen matches:', error.message);
-      throw error;
+    console.error('Error fetching sixteen matches:', error.message);
+    throw error;
   }
 };
 
 export const getQuarterfinalMatches = async (tournamentId) => {
   try {
-      const response = await axiosInstance.get(`/tournaments/${tournamentId}/matches/quarterfinals`);
-      return response.data;
+    // Use qs to build the query for populating the quarterfinal matches
+    const query = qs.stringify({
+      populate: {
+        golden_cup: {
+          populate: {
+            quarterfinals: {
+              populate: {
+                couples: {
+                  populate: {
+                    members: {
+                      populate: {
+                        profilePicture: {
+                          populate: 'formats',
+                        },
+                      },
+                      fields: ['id', 'firstName', 'lastName'],
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }, { encode: false });
+
+    const response = await axiosInstance.get(`/tournaments/${tournamentId}?${query}`);
+    return response.data?.golden_cup?.quarterfinals || [];
   } catch (error) {
-      console.error('Error fetching quarterfinal matches:', error.message);
-      throw error;
+    console.error('Error fetching quarterfinal matches:', error.message);
+    throw error;
   }
 };
 
 export const getSemifinalMatches = async (tournamentId) => {
   try {
-      const response = await axiosInstance.get(`/tournaments/${tournamentId}/matches/semifinals`);
-      return response.data;
+    // Use qs to build the query for populating the semifinal matches
+    const query = qs.stringify({
+      populate: {
+        golden_cup: {
+          populate: {
+            semifinals: {
+              populate: {
+                couples: {
+                  populate: {
+                    members: {
+                      populate: {
+                        profilePicture: {
+                          populate: 'formats',
+                        },
+                      },
+                      fields: ['id', 'firstName', 'lastName'],
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }, { encode: false });
+
+    const response = await axiosInstance.get(`/tournaments/${tournamentId}?${query}`);
+    return response.data?.golden_cup?.semifinals || [];
   } catch (error) {
-      console.error('Error fetching semifinal matches:', error.message);
-      throw error;
+    console.error('Error fetching semifinal matches:', error.message);
+    throw error;
   }
 };
 
 export const getFinalMatches = async (tournamentId) => {
   try {
-      const response = await axiosInstance.get(`/tournaments/${tournamentId}/matches/final`);
-      return response.data;
+    // Use qs to build the query for populating the final matches
+    const query = qs.stringify({
+      populate: {
+        golden_cup: {
+          populate: {
+            final: {
+              populate: {
+                couples: {
+                  populate: {
+                    members: {
+                      populate: {
+                        profilePicture: {
+                          populate: 'formats',
+                        },
+                      },
+                      fields: ['id', 'firstName', 'lastName'],
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }, { encode: false });
+
+    const response = await axiosInstance.get(`/tournaments/${tournamentId}?${query}`);
+    return response.data?.golden_cup?.final || [];
   } catch (error) {
-      console.error('Error fetching final matches:', error.message);
-      throw error;
+    console.error('Error fetching final matches:', error.message);
+    throw error;
   }
 };
