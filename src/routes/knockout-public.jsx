@@ -179,8 +179,8 @@ const GoldenCup = () => {
                             {tournament.attributes?.main_sponsors?.data?.map((sponsor) => (
                                 <div className="w-36 h-36 flex items-center justify-center" key={sponsor.id}>
                                     <img 
-                                        src={sponsor.attributes?.url} 
-                                        alt={sponsor.attributes?.name || 'Sponsor'} 
+                                        src={sponsor?.attributes?.url} 
+                                        alt={sponsor?.attributes?.name || 'Sponsor'} 
                                         className="m-auto object-contain w-full h-full" 
                                     />
                                 </div>
