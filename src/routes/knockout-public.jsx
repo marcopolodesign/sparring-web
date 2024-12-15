@@ -12,7 +12,7 @@ const GoldenCup = () => {
     const tournamentId = searchParams.get('tournament_id') || 1;   
     const [sixteen, setSixteen] = useState(null);
     const [quarterfinals, setQuarterfinals] = useState(null);
-    const [semifinals, setSemifinals] = useState(null);
+    const [semifinals, setSemiFinals] = useState(null);
     const [final, setFinal] = useState(null);
     const [tournament, setTournament] = useState(null);
 
@@ -35,33 +35,58 @@ const GoldenCup = () => {
       }
       , [tournamentId]);
 
-    useEffect(() => {
-        const fetchAllMatches = async () => {
+      useEffect(() => {
+
+        const fetchSixteenfinals = async () => {
             try {
-                // Fetch round of sixteen matches
-                const sixteenMatches = await getSixteenMatches(tournamentId);
-                setSixteen(sixteenMatches);
-                console.log(sixteenMatches, '16');
-
-                // Fetch quarterfinal matches
-                const quarterfinalMatches = await getQuarterfinalMatches(tournamentId);
-                setQuarterfinals(quarterfinalMatches);
-
-                // Fetch semifinal matches
-                const semifinalMatches = await getSemifinalMatches(tournamentId);
-                setSemifinals(semifinalMatches);
-
-                // Fetch final matches
-                const finalMatches = await getFinalMatches(tournamentId);
-                setFinal(finalMatches);
+                const data = await getQuarterfinalMatches(tournamentId); // Fetch quarterfinal matches
+                console.log(data, 'sixteen')
+                setSixteen(data); // Save the quarterfinal matches in the state
             } catch (error) {
-                console.error('Error fetching matches:', error.message);
+                console.error('Error fetching quarterfinals:', error.message);
             }
         };
 
-        fetchAllMatches();
-    }, [tournamentId]); // Re-run effect if the tournamentId changes
 
+        fetchSixteenfinals();
+        const fetchQuarterfinals = async () => {
+            try {
+                const data = await getQuarterfinalMatches(tournamentId); // Fetch quarterfinal matches
+                console.log(data, 'quarters')
+                setQuarterfinals(data); // Save the quarterfinal matches in the state
+            } catch (error) {
+                console.error('Error fetching quarterfinals:', error.message);
+            }
+        };
+
+        fetchQuarterfinals();
+
+        const fetchSemis = async () => {
+          try {
+              const data = await getSemifinalMatches(tournamentId); // Fetch semis matches
+              console.log(data, 'semis')
+              setSemiFinals(data); // Save the quarterfinal matches in the state
+          } catch (error) {
+              console.error('Error fetching semis:', error.message);
+          }
+      };
+
+      fetchSemis();
+
+
+      const fetchFinal = async () => {
+        try {
+            const data = await getFinalMatches(tournamentId); // Fetch final matches
+            console.log(data, 'final')
+            setFinal(data); // Save the quarterfinal matches in the state
+        } catch (error) {
+            console.error('Error fetching finals:', error.message);
+        }
+    };
+
+    fetchFinal();
+
+    }, []);
     if (!sixteen || !quarterfinals || !semifinals || !final) {
         return <Loading />;
     }
@@ -107,9 +132,9 @@ const GoldenCup = () => {
             {/* Round of Sixteen */}
             <div className="flex flex-col gap-10 w-screen pb-10">
                 <h2 className="text-xl text-body text-white text-center">Round of Sixteen</h2>
-                {sixteen.length > 0 && (
+                {sixteen.goldenCupMatches?.length > 0 && (
                     <ul className="flex w-full gap-8 overflow-scroll justify-around">
-                        {sixteen.map((match) => (
+                        {sixteen.goldenCupMatches?.map((match) => (
                             <MatchCardKnockout gamesToWin={3} match={match} key={match.id} />
                         ))}
                     </ul>
@@ -119,9 +144,9 @@ const GoldenCup = () => {
             {/* Quarterfinals */}
             <div className="flex flex-col gap-10 w-screen pb-10">
                 <h2 className="text-xl text-body text-white text-center">Quarterfinals</h2>
-                {quarterfinals.length > 0 && (
+                {quarterfinals.goldenCupMatches?.length > 0 && (
                     <ul className="flex w-full gap-8 overflow-scroll justify-around">
-                        {quarterfinals.map((match) => (
+                        {quarterfinals.goldenCupMatches?.map((match) => (
                             <MatchCardKnockout gamesToWin={4} match={match} key={match.id} />
                         ))}
                     </ul>
@@ -131,9 +156,9 @@ const GoldenCup = () => {
             {/* Semifinals */}
             <div className="flex flex-col gap-10 w-screen pb-10">
                 <h2 className="text-xl text-body text-white text-center">Semifinals</h2>
-                {semifinals.length > 0 && (
+                {semifinals.goldenCupMatches?.length > 0 && (
                     <ul className="flex w-full gap-8 overflow-scroll justify-around">
-                        {semifinals.map((match) => (
+                        {semifinals.goldenCupMatches?.map((match) => (
                             <MatchCardKnockout gamesToWin={4} match={match} key={match.id} />
                         ))}
                     </ul>
@@ -143,9 +168,9 @@ const GoldenCup = () => {
             {/* Final */}
             <div className="flex flex-col gap-10 w-screen pb-60">
                 <h2 className="text-xl text-body text-white text-center">Final</h2>
-                {final.length > 0 && (
+                {final.goldenCupMatches?.length > 0 && (
                     <ul className="flex w-full gap-8 overflow-scroll justify-center">
-                        {final.map((match) => (
+                        {final.goldenCupMatches?.map((match) => (
                             <MatchCardKnockout gamesToWin={6} match={match} key={match.id} />
                         ))}
                     </ul>
