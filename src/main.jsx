@@ -13,6 +13,7 @@ import CopaOro from './routes/copa-oro'
 import CopaPlata from './routes/copa-plata'
 import PublicTournament from './routes/torneo-public'
 import Ranking from './components/fuba/Ranking'
+import PublicKnockout from './routes/knockout-public'
 
 import {
   createBrowserRouter,
@@ -89,6 +90,11 @@ const router = createBrowserRouter([
   {
     path: 'torneos/grupos', 
     element: <PublicTournament />,
+  }, 
+
+  {
+    path: 'torneos/eliminacion', 
+    element: <PublicKnockout />,
   }, 
   
 

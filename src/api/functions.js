@@ -416,7 +416,7 @@ export const addMemberToMatch = async (matchId, userId) => {
   }
 
 }
-export const getQuarterfinalMatches = async (tournamentId, userId) => {
+export const getQuarterfinalMatchesOld = async (tournamentId, userId) => {
   try {
     const response = await axiosInstance.get(`${API_BASE_URL}/fupa/${tournamentId}/quarters/${userId}`);
     console.log(response.data, 'QUARTERS')
@@ -428,7 +428,7 @@ export const getQuarterfinalMatches = async (tournamentId, userId) => {
 };
 
 // Fetch Semifinal Matches
-export const getSemifinalMatches = async (tournamentId, userId) => {
+export const getSemifinalMatchesOld = async (tournamentId, userId) => {
   try {
     const response = await axiosInstance.get(`${API_BASE_URL}/fupa/${tournamentId}/semis/${userId}`);
     return response.data;
@@ -439,7 +439,7 @@ export const getSemifinalMatches = async (tournamentId, userId) => {
 };
 
 // Fetch Final Matches
-export const getFinalMatches = async (tournamentId, userId) => {
+export const getFinalMatchesOld = async (tournamentId, userId) => {
   try {
     const response = await axiosInstance.get(`${API_BASE_URL}/fupa/${tournamentId}/final/${userId}`);
     return response.data;
@@ -517,5 +517,46 @@ export const getIndividualTournamentLeaderboard = async (tournamentId) => {
   } catch (error) {
     console.error('Error fetching individual tournament leaderboard:', error);
     throw error;
+  }
+};
+
+
+export const getSixteenMatches = async (tournamentId) => {
+  try {
+      const response = await axiosInstance.get(`/tournaments/${tournamentId}/matches/sixteen`);
+      return response.data;
+  } catch (error) {
+      console.error('Error fetching sixteen matches:', error.message);
+      throw error;
+  }
+};
+
+export const getQuarterfinalMatches = async (tournamentId) => {
+  try {
+      const response = await axiosInstance.get(`/tournaments/${tournamentId}/matches/quarterfinals`);
+      return response.data;
+  } catch (error) {
+      console.error('Error fetching quarterfinal matches:', error.message);
+      throw error;
+  }
+};
+
+export const getSemifinalMatches = async (tournamentId) => {
+  try {
+      const response = await axiosInstance.get(`/tournaments/${tournamentId}/matches/semifinals`);
+      return response.data;
+  } catch (error) {
+      console.error('Error fetching semifinal matches:', error.message);
+      throw error;
+  }
+};
+
+export const getFinalMatches = async (tournamentId) => {
+  try {
+      const response = await axiosInstance.get(`/tournaments/${tournamentId}/matches/final`);
+      return response.data;
+  } catch (error) {
+      console.error('Error fetching final matches:', error.message);
+      throw error;
   }
 };
