@@ -3,6 +3,10 @@
     {
       "source": "/(.*)",
       "destination": "/index.html"
+    }, 
+    {
+      "source": "/match/:path*",
+      "destination": "/index.html"
     }
   ],
   "redirects": [
