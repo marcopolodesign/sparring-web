@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "6KSWF3L58X.com.sparring.sparring", 
+        "paths": ["/match/*"]
+      }
+    ]
+  }
+}
