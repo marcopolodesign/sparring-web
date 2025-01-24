@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "6KSWF3L58X.com.sparring.sparring", 
+        "paths": ["/partido/*"]
+      }
+    ]
+  },
+  "activitycontinuation": {
+    "apps": ["6KSWF3L58X.com.sparring.sparring"]
+  },
+  "webcredentials": {
+    "apps": ["6KSWF3L58X.com.sparring.sparring"]
+  }
+}
