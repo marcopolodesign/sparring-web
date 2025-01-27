@@ -6,26 +6,27 @@ const Partido = () => {
   const idMatch = searchParams.get("idMatch");
 
   useEffect(() => {
-    // Construct the custom scheme URL
+    // Custom scheme URL for deep linking
     const customSchemeUrl = `sparring-app://partido?idMatch=${idMatch}`;
-    const fallbackUrl = "https://sparring.com.ar/download"; // Fallback download page
+    const fallbackUrl = "https://testflight.apple.com/join/9E5yhzav"; // Updated fallback URL
 
     // Attempt to redirect to the app
     window.location.href = customSchemeUrl;
 
-    // Fallback after a timeout if the app is not installed
+    // If the app is not installed, redirect to TestFlight after a timeout
     const timer = setTimeout(() => {
       window.location.href = fallbackUrl;
     }, 2000);
 
-    return () => clearTimeout(timer); // Cleanup timeout
+    return () => clearTimeout(timer); // Clean up the timer
   }, [idMatch]);
 
   return (
     <div>
-      <h1>Redirigiendo a la App...</h1>
+      <h1>Redirecting to the App...</h1>
       <p>
-        If you are not redirected automatically, <a href="https://sparring.com.ar/download">click here</a>.
+        If the redirection does not work,{" "}
+        <a href="https://testflight.apple.com/join/9E5yhzav">click here</a> to join the TestFlight.
       </p>
     </div>
   );
