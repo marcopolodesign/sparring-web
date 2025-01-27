@@ -14,6 +14,7 @@ import CopaPlata from './routes/copa-plata'
 import PublicTournament from './routes/torneo-public'
 import Ranking from './components/fuba/Ranking'
 import PublicKnockout from './routes/knockout-public'
+import Partido from './routes/partido'
 
 import {
   createBrowserRouter,
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
     element: <PublicKnockout />,
   }, 
   
+  {
+    path: "/partido",
+    element: <Partido />,
+  },
 
 
   // {
