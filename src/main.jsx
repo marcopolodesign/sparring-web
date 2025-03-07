@@ -15,6 +15,7 @@ import PublicTournament from './routes/torneo-public'
 import Ranking from './components/fuba/Ranking'
 import PublicKnockout from './routes/knockout-public'
 import Partido from './routes/partido'
+import Privacy from './routes/privacy'
 
 import {
   createBrowserRouter,
@@ -102,6 +103,12 @@ const router = createBrowserRouter([
     path: "/partido",
     element: <Partido />,
   },
+
+  {
+    path: "/privacy",
+    element: <Privacy />,
+  },
+
 
 
   // {
