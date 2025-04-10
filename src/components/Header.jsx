@@ -39,16 +39,20 @@ export default function Header({ showLoading }) {
           </a>
         </div>
         <div className="lg:justify-end">
-          {/* Modified Registrarme Link to open the modal */}
+          {/* Modified Registrarme Link to handle Android and iOS */}
           <a
             onClick={(e) => {
               e.preventDefault(); // Prevent default anchor behavior
-              showLoading(); // Open the modal
+              if (/android/i.test(navigator.userAgent)) {
+                showLoading(); // Call showLoading for Android
+              } else {
+                window.location.href = 'https://apps.apple.com/us/app/sparring-descubr%C3%AD-jugadores/id6554008323';
+              }
             }}
             href="#register"
-            className="text-sm font-semibold leading-6 text-lightGreen cursor-pointer"
+            className="text-md font-semibold leading-6 text-lightGreen cursor-pointer"
           >
-            Registrarme <span aria-hidden="true">&rarr;</span>
+            {/android/i.test(navigator.userAgent) ? 'Registrarme' : 'Descargar'} <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
         <div className="!hidden lg:flex lg:gap-x-12">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '../styled';
 import iPhoneHomeImage from '/src/assets/images/iphone-home.png';
+import badge from '/src/assets/icons/app-badge.svg';
 
 export default function Hero({ showLoading }) {
   return (
@@ -10,14 +11,17 @@ export default function Hero({ showLoading }) {
           <h1 className="text-5xl px-4 font-bold tracking-normal text-lightGreen uppercase font-display sm:text-8xl">
             Conectá con jugadores y elevá tu nivel
           </h1>
-          <p className="mt-6 text-lg leading-8 text-white font-body px-4">
+          <p className="mt-6 text-xl leading-8 text-white font-body px-4">
           Sparring es la plataforma definitiva para conectar jugadores, gestionar clubes y organizar torneos en un solo lugar. Buscá gente con quien jugar, alquilá canchas, conseguí profesores y anotate en torneos.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Button onClick={ () => {
-              showLoading();
+            <div className="cursor-pointer" onClick={ () => {
+              // showLoading();
+              window.location.href = 'https://apps.apple.com/us/app/sparring-descubr%C3%AD-jugadores/id6554008323';
             }} 
-            $primary="true">Registrarme en lista de espera</Button>
+            >
+              <img className="w-52" src={badge}alt="descargar en app store"/>
+            </div>
           </div>
         </div>
       </div>

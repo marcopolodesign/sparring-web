@@ -140,7 +140,7 @@ function App() {
       <Feature icon={<SparringCoachIcon />} bgColor="veryViolet" mainHeading={'La mejor herramienta para coaches de pádel '} description={'Tu agenda completa, en tu bolsillo. Visualizá tu disponibilidad y esperá a que tus alumnos nuevos se anoten.'} image={content5.image}/>
       <Footer />
       <Modal showLoading={showLoading} setOpen={setOpen} open={open}/>
-      {/* <RegisterTournament setOpenRegister={setOpenRegister} openRegister={openRegister}/> */}
+      <RegisterTournament setOpenRegister={setOpenRegister} openRegister={openRegister}/>
     </>
   );
 }
